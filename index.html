@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Bangpu Cozy · ผังโครงการ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a small cover with two large page cards; one column on phones. */
+:root{
+  color-scheme:light;
+  --bg:#ffffff; --ink:#2d2940; --muted:#7d7891; --soft:#f7f5fb; --line:#ece8f4;
+  --plan:#18242c; --plan-line:#5fd0c4; --plan-ex:#7ad97a;
+  --font:'IBM Plex Sans Thai','Sarabun',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font)}
+main{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:clamp(28px,6vw,64px) 40px;display:grid;gap:28px}
+.eyebrow{margin:0;font-size:13px;letter-spacing:.08em;color:var(--muted)}
+h1{margin:4px 0 8px;font-size:clamp(34px,6vw,54px);line-height:1.05;text-wrap:balance}
+.lede{margin:0;max-width:56ch;color:var(--muted);font-size:15.5px;line-height:1.65}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
+a.card{display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line);border-radius:22px;overflow:hidden;text-decoration:none;color:inherit;background:var(--bg);transition:transform .35s cubic-bezier(.3,1.7,.5,1),box-shadow .25s}
+a.card:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 14px 30px rgba(45,41,64,.1)}
+a.card:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.thumb{aspect-ratio:16/9;max-width:100%;display:block;width:100%}
+.body{padding:16px 20px 20px;display:grid;gap:6px;align-content:start}
+.body b{font-size:21px}
+.body span{color:var(--muted);font-size:14.5px;line-height:1.6}
+.go{margin-top:6px;font-weight:600;font-size:14px}
+.note{margin:0;font-size:12.5px;color:var(--muted);line-height:1.6}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">BANGPU COZY · บ้าน + ร้าน</p>
+    <h1>ผังโครงการ</h1>
+    <p class="lede">เลือกดูได้สองแบบ แบบเจลลี่ดูง่ายว่าแต่ละส่วนอยู่ใกล้กันอย่างไร แบบผังบนที่ดินจริงแสดงขนาดห้อง ระยะร่น และข้อกำหนดตามกฎหมาย</p>
+  </header>
+  <div class="cards">
+    <a class="card" href="bubble.html">
+      <svg class="thumb" viewBox="0 0 320 180" aria-hidden="true">
+        <defs>
+          <radialGradient id="ga" cx=".35" cy=".3"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#86E6B4"/><stop offset="1" stop-color="#38C3B0"/></radialGradient>
+          <radialGradient id="gb" cx=".35" cy=".3"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#FFD95A"/><stop offset="1" stop-color="#FFA92E"/></radialGradient>
+          <radialGradient id="gc" cx=".35" cy=".3"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#86DCFF"/><stop offset="1" stop-color="#5096FF"/></radialGradient>
+          <radialGradient id="gd" cx=".35" cy=".3"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#FF9A6E"/><stop offset="1" stop-color="#FF5F7A"/></radialGradient>
+          <radialGradient id="ge" cx=".35" cy=".3"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#C6CCE2"/><stop offset="1" stop-color="#8B97BD"/></radialGradient>
+        </defs>
+        <rect width="320" height="180" fill="#faf9fd"/>
+        <g stroke="#d6d1e4" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round">
+          <line x1="118" y1="62" x2="150" y2="96"/><line x1="160" y1="110" x2="128" y2="138"/><line x1="200" y1="100" x2="236" y2="80"/>
+        </g>
+        <circle cx="100" cy="52" r="30" fill="url(#ga)" opacity=".92"/>
+        <circle cx="168" cy="102" r="26" fill="url(#gc)" opacity=".92"/>
+        <circle cx="118" cy="146" r="22" fill="url(#gb)" opacity=".92"/>
+        <circle cx="250" cy="70" r="34" fill="url(#ge)" opacity=".92"/>
+        <circle cx="222" cy="146" r="16" fill="url(#gd)" opacity=".92"/>
+      </svg>
+      <div class="body"><b>ผังความสัมพันธ์ (เจลลี่)</b><span>เห็นภาพรวมว่าห้องไหนอยู่ติดกัน เอาเมาส์ไปแตะ เจลลี่จะเด้ง แนะนำให้ดูหน้านี้ก่อน</span><span class="go">เปิดดู →</span></div>
+    </a>
+    <a class="card" href="function.html">
+      <svg class="thumb" viewBox="0 0 320 180" aria-hidden="true">
+        <rect width="320" height="180" fill="#18242c"/>
+        <path d="M70 160 L64 22 L196 14 L230 160 Z" fill="none" stroke="#e8eef2" stroke-width="2"/>
+        <path d="M168 160 L196 160 L222 30 L168 26 Z" fill="none" stroke="#7ad97a" stroke-width="2"/>
+        <g fill="#5fd0c4" fill-opacity=".18" stroke="#5fd0c4" stroke-width="1.5">
+          <rect x="84" y="118" width="80" height="38"/><rect x="84" y="78" width="80" height="36"/><rect x="84" y="28" width="80" height="46"/>
+        </g>
+        <path d="M76 160 L72 30" stroke="#ff7a6b" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <rect x="0" y="162" width="320" height="18" fill="#26343d"/>
+      </svg>
+      <div class="body"><b>ผังบนที่ดินจริง + กฎหมาย</b><span>ห้องวาดตามขนาดจริงบนรูปแปลง พร้อมตรวจระยะร่น ที่ว่าง และความสูงอาคาร ซูมเข้าออกได้</span><span class="go">เปิดดู →</span></div>
+    </a>
+  </div>
+  <p class="note">ผังทั้งสองเป็นแผนภาพเพื่อคุยแนวคิดการใช้พื้นที่ ยังไม่ใช่แบบก่อสร้าง</p>
+</main>
+</body>
+</html>

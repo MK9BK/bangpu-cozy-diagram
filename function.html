@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Function Diagram · Bangpu Cozy</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Noto+Serif+Thai:wght@600;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: survey-sheet style — scaled site plan on the left, live regulation panel on the right, editor below (architect only) */
+:root{
+  color-scheme:light;
+  --paper:#f5f7f8; --sheet:#ffffff; --ink:#18242c; --muted:#56656f; --line:#d5dde2;
+  --accent:#0e6b74; --accent-soft:#e1f0f1;
+  --ok:#2c7a3f; --ok-soft:#e3f2e6; --warn:#a35a00; --warn-soft:#fbefdc; --risk:#b3261e; --risk-soft:#fbe5e3;
+  --road:#dfe4e7; --road-line:#9aa6ad; --site:#fbfcfc; --build:#eef7f6;
+  --z-shop:#b86d0c; --z-shop-bg:#fbe8c8;
+  --z-service:#b4532a; --z-service-bg:#f8dfd3;
+  --z-storage:#7b6248; --z-storage-bg:#ece2d6;
+  --z-home:#0e6b74; --z-home-bg:#d4ebed;
+  --z-worship:#7b4fae; --z-worship-bg:#ebe1f5;
+  --z-parking:#4f5d67; --z-parking-bg:#e1e6ea;
+  --z-garden:#2c7a3f; --z-garden-bg:#dcefdf;
+  --z-circ:#6f7d86; --z-circ-bg:#eef1f3;
+  --ex:#2c8a3f; --ex2:#17603a; --arch:#d4691c;
+  --f-display:"Noto Serif Thai", Georgia, serif;
+  --f-body:"IBM Plex Sans Thai", "Sarabun", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0f1519; --sheet:#151e23; --ink:#e3eaee; --muted:#9aa9b2; --line:#2a3740;
+  --accent:#5fc2c9; --accent-soft:#163338;
+  --ok:#7fd08e; --ok-soft:#173222; --warn:#f0b35c; --warn-soft:#3a2a12; --risk:#f28b82; --risk-soft:#3d1a18;
+  --road:#1f2a31; --road-line:#56656f; --site:#182228; --build:#152a2c;
+  --z-shop:#f0b35c; --z-shop-bg:#3a2a12;
+  --z-service:#f08f6a; --z-service-bg:#3a1f15;
+  --z-storage:#c9ad8c; --z-storage-bg:#2e261d;
+  --z-home:#5fc2c9; --z-home-bg:#143236;
+  --z-worship:#b99ae0; --z-worship-bg:#2a2038;
+  --z-parking:#a7b4bd; --z-parking-bg:#222c33;
+  --z-garden:#7fd08e; --z-garden-bg:#173222;
+  --z-circ:#9aa9b2; --z-circ-bg:#1c252b;
+  --ex:#5fd07a; --ex2:#3fae6a; --arch:#f2873a;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f1519; --sheet:#151e23; --ink:#e3eaee; --muted:#9aa9b2; --line:#2a3740;
+  --accent:#5fc2c9; --accent-soft:#163338;
+  --ok:#7fd08e; --ok-soft:#173222; --warn:#f0b35c; --warn-soft:#3a2a12; --risk:#f28b82; --risk-soft:#3d1a18;
+  --road:#1f2a31; --road-line:#56656f; --site:#182228; --build:#152a2c;
+  --z-shop:#f0b35c; --z-shop-bg:#3a2a12;
+  --z-service:#f08f6a; --z-service-bg:#3a1f15;
+  --z-storage:#c9ad8c; --z-storage-bg:#2e261d;
+  --z-home:#5fc2c9; --z-home-bg:#143236;
+  --z-worship:#b99ae0; --z-worship-bg:#2a2038;
+  --z-parking:#a7b4bd; --z-parking-bg:#222c33;
+  --z-garden:#7fd08e; --z-garden-bg:#173222;
+  --z-circ:#9aa9b2; --z-circ-bg:#1c252b;
+  --ex:#5fd07a; --ex2:#3fae6a; --arch:#f2873a;
+  color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;padding-inline:16px;padding-block:24px 64px}
+.wrap{max-width:1280px;margin:0 auto;display:grid;gap:22px}
+header.doc{border-bottom:2px solid var(--ink);padding-bottom:18px;display:grid;gap:8px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;color:var(--accent)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,4.4vw,38px);line-height:1.3;margin:0;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:21px;line-height:1.4;margin:0;text-wrap:balance}
+h3{font-size:15.5px;font-weight:600;margin:0}
+p{margin:0}
+.lede{color:var(--muted);max-width:72ch}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);font-family:var(--f-mono)}
+a{color:var(--accent)}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ghost-btn{background:none;border:1px solid transparent;color:var(--muted);font-size:12.5px;padding:4px 10px;border-radius:999px;opacity:.55;white-space:nowrap}
+.ghost-btn:hover,.ghost-btn:focus-visible{opacity:1;border-color:var(--line)}
+body.edit .ghost-btn{opacity:1;background:var(--accent);color:var(--sheet);border-color:var(--accent)}
+.banner{display:none;background:var(--accent-soft);border:1px solid var(--accent);border-radius:4px;padding:8px 12px;font-size:13.5px}
+body.edit .banner{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:11px;line-height:1;padding:5px 8px;border-radius:999px;white-space:nowrap;vertical-align:2px}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.risk{background:var(--risk-soft);color:var(--risk)}
+.chip.info{background:var(--accent-soft);color:var(--accent)}
+
+.app{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px;align-items:start}
+@media (max-width:980px){.app{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:16px clamp(14px,2.4vw,22px);display:grid;gap:12px;min-width:0}
+.plan-card{padding-bottom:12px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{background:none;border:0;padding:6px 16px;font-size:14px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--sheet)}
+.toggles{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.toggles label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.edit-tools{display:none;flex-wrap:wrap;gap:8px}
+body.edit .edit-tools{display:flex}
+.btn{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:6px 12px;font-size:13.5px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--sheet);font-weight:600}
+.btn[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.svg-box{position:relative;overflow:auto;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+.zoom-ctl{position:absolute;bottom:8px;right:8px;display:flex;align-items:center;gap:4px;padding:4px;background:var(--sheet);border:1px solid var(--line);border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.zoom-ctl button{min-width:30px;height:30px;padding:0 8px;background:none;border:1px solid transparent;border-radius:4px;font-size:16px;line-height:1;color:var(--ink);cursor:pointer}
+.zoom-ctl button:hover{border-color:var(--line)}
+.zoom-ctl #zFit{font-size:12.5px}
+.zoom-ctl output{min-width:44px;text-align:center;font:12px "IBM Plex Mono",monospace;color:var(--muted)}
+#plan.zoomed{cursor:grab}
+#plan.panning{cursor:grabbing}
+#plan{display:block;width:100%;height:auto;max-height:80vh;min-height:340px;touch-action:none;user-select:none;-webkit-user-select:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--c);background:var(--cb);flex:none}
+.sw.line{border:0;border-radius:0;height:0;border-top:2px dashed var(--risk);background:none}
+.sw.hatch{border:1px solid var(--risk);background:repeating-linear-gradient(45deg,var(--risk) 0 1px,transparent 1px 5px);opacity:.7}
+.sw.ex{border-color:var(--ex);background:repeating-linear-gradient(45deg,var(--ex) 0 1.5px,transparent 1.5px 5px)}
+.sw.ex2{border-color:var(--ex2);background:repeating-linear-gradient(45deg,var(--ex2) 0 2px,transparent 2px 5px)}
+.sw.arch{border:0;border-radius:0;height:0;border-top:2px solid var(--arch);background:none}
+.sw.consent{border:0;border-radius:0;height:0;border-top:3px solid var(--accent);background:none}
+
+/* svg */
+.t{font-family:var(--f-body);fill:var(--ink)}
+.tm{font-family:var(--f-mono);fill:var(--muted)}
+.road{fill:var(--road)}
+.road-c{stroke:var(--road-line);stroke-width:.06;stroke-dasharray:.6 .4;fill:none}
+.site{fill:url(#hatch);stroke:none}
+.site-bg{fill:var(--site)}
+.build{fill:var(--build);stroke:var(--risk);stroke-width:.06;stroke-dasharray:.35 .2}
+.edge{stroke:var(--ink);stroke-width:.1;fill:none}
+.edge.consent{stroke:var(--accent);stroke-width:.22}
+.edge.sel{stroke:var(--accent);stroke-width:.3}
+.edge-hit{stroke:transparent;stroke-width:.9;fill:none;cursor:pointer}
+.blk{cursor:pointer}
+.blk rect.b{fill:var(--cb);stroke:var(--c);stroke-width:.07}
+.blk.out rect.b{fill-opacity:.55;stroke-dasharray:.25 .15}
+.blk.inex rect.b{fill-opacity:.82}
+.blk.bad rect.b{stroke:var(--risk);stroke-width:.16}
+.blk.ovl rect.b{stroke:var(--warn);stroke-width:.16}
+.blk.sel rect.b{stroke-width:.2}
+.blk .nm{font-family:var(--f-body);fill:var(--ink);font-weight:600;pointer-events:none;paint-order:stroke;stroke:var(--cb);stroke-width:.14;stroke-linejoin:round}
+.blk .ar{font-family:var(--f-mono);fill:var(--muted);pointer-events:none}
+.exb{stroke:var(--ex);stroke-width:.1;cursor:pointer}
+.exb.f2{stroke:var(--ex2)}
+.exb.sel{stroke-width:.24}
+.ex-lbl{font-family:var(--f-body);font-weight:600;pointer-events:none}
+.zone-a{fill:var(--cb);fill-opacity:.45;stroke:var(--c);stroke-width:.05;stroke-dasharray:.4 .2;pointer-events:none}
+.zone-lbl{font-family:var(--f-mono);fill:var(--c);pointer-events:none}
+.arch{stroke:var(--arch);stroke-width:.09;fill:none;pointer-events:none}
+.ghost rect{fill:none;stroke:var(--muted);stroke-width:.05;stroke-dasharray:.2 .15;opacity:.7}
+.ghost text{font-family:var(--f-body);fill:var(--muted);opacity:.8}
+.link{stroke:var(--ink);stroke-width:.06;stroke-dasharray:.18 .14;opacity:.55;pointer-events:none}
+.link-dot{fill:var(--ink);opacity:.55;pointer-events:none}
+.mk path{fill:var(--accent)}
+.mk text{font-family:var(--f-body);fill:var(--accent);font-weight:600}
+.mk{cursor:default}
+body.edit .mk{cursor:move}
+.handle{fill:var(--sheet);stroke:var(--accent);stroke-width:.08;cursor:nwse-resize}
+.north path{fill:var(--ink)}
+.dim{font-family:var(--f-mono);fill:var(--muted)}
+
+/* panel */
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.m{border:1px solid var(--line);border-radius:4px;padding:8px 10px;display:grid;gap:1px;min-width:0}
+.m b{font-family:var(--f-mono);font-size:19px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.3}
+.m span{font-size:12px;color:var(--muted);line-height:1.45}
+.m.pass{border-color:var(--ok)} .m.fail{border-color:var(--risk);background:var(--risk-soft)}
+.m.wide{grid-column:1/-1}
+.info{display:grid;gap:8px;font-size:14px}
+.info .hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.info dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 12px;margin:0;font-size:13.5px}
+.info dt{color:var(--muted)}
+.info dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:8px 10px;border-radius:3px;font-size:13.5px}
+.muted{color:var(--muted)}
+.zsum{display:grid;gap:4px;font-size:13px}
+.zrow{display:grid;grid-template-columns:14px minmax(0,1fr) 54px 54px 60px;gap:8px;align-items:center}
+.zrow .n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+.zrow.h{color:var(--muted);font-size:11.5px}
+.zrow.tot{border-top:1px solid var(--line);padding-top:4px;font-weight:600}
+
+/* lower sections */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:4px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-weight:600;background:var(--paper);font-size:12.5px}
+tr:last-child td{border-bottom:0}
+ul.clean{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.editor{display:none}
+body.edit .editor{display:grid}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.form label{display:grid;gap:3px;font-size:12.5px;color:var(--muted)}
+.form input,.form select,#prog input,#prog select{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:6px 8px;width:100%;color:var(--ink)}
+#prog{min-width:900px}
+#prog td{padding:4px 6px;vertical-align:middle}
+#prog input[type=number]{font-family:var(--f-mono);width:72px}
+#prog input[type=checkbox]{width:auto}
+#prog tr.sel td{background:var(--accent-soft)}
+#prog .ar{font-family:var(--f-mono);white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--sheet);padding:8px 16px;border-radius:999px;font-size:13.5px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
+.toast.on{opacity:1}
+.req td:first-child{font-family:var(--f-mono);color:var(--muted);white-space:nowrap}
+.req select,.req input{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:5px 7px;width:100%;color:var(--ink)}
+.req .prop{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.req-sum{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px}
+.ed-only{display:none}
+body.edit .ed-only{display:revert}
+body.edit .cl-only{display:none}
+footer{font-size:12.5px;color:var(--muted);max-width:80ch}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+
+<script type="application/json" id="state">{"meta":{"option":"ผังจากสเก็ตช์สถาปนิก รอบ 3 · คงอาคารเดิมไว้","updated":"2026-10-16","rev":4},"site":{"road":6,"height":8.5,"use":"mix","edges":["road","blank","blank","open","open","blank"]},"existing":[{"id":"e1","f":1,"n":"อาคารเดิม ชั้น 1 (คงไว้)","use":"ที่จอดรถ + Loading และโกดังข้าว","pts":[[10.159,0],[13.165,0],[18.541,22.372],[10.159,23.197]]},{"id":"e2","f":2,"n":"อาคารเดิม ชั้น 2 (คงไว้)","use":"Storage","pts":[[10.159,5.99],[14.604,5.99],[18.541,22.372],[10.159,23.197]]}],"zones":[{"n":"ค้าขาย / ออฟฟิศ / ครัว","z":"shop","f":[1],"pts":[[2.159,0],[10.159,0],[10.159,5.99],[2.159,5.99]]},{"n":"ลานโล่ง / คอร์ตกลาง","z":"garden","f":[1],"pts":[[2.159,5.99],[10.159,5.99],[10.159,12.001],[2.159,12.001]]},{"n":"พักอาศัย 2 ชั้น","z":"home","f":[1,2],"pts":[[2.159,12.001],[10.159,12.001],[10.159,22.182],[2.159,22.182]]}],"line":[[0.995,0],[2.222,22.965],[10.159,22.182]],"blocks":[{"id":"w1","n":"ทางเดินเข้าบ้าน (รถเข็นวีลแชร์ได้)","f":1,"z":"circ","r":false,"x":0.95,"y":0,"w":1.21,"h":16.6,"note":"ทางเดินแยกจากหน้าร้าน ไปถึงทางเข้าบ้านและที่จอดรถหลังบ้าน"},{"id":"st1","n":"ขั้นบันไดหน้าร้าน","f":1,"z":"circ","r":false,"x":2.16,"y":0,"w":8.0,"h":0.9,"note":"ยกพื้นร้านหนีน้ำท่วม 3–4 ขั้น ลึกประมาณ 0.9–1.2 ม."},{"id":"s1","n":"หน้าร้านขายของ","f":1,"z":"shop","r":true,"x":2.16,"y":0.9,"w":5.4,"h":2.7,"note":"ร้านข้าวสารอยู่ด้านหน้าเหมือนเดิม"},{"id":"s2","n":"เตา + ถ่าน","f":1,"z":"service","r":true,"x":7.56,"y":0.9,"w":2.6,"h":1.5,"note":"โซนเตาแยกจากครัว อยู่ด้านหน้าร้าน"},{"id":"s3","n":"Office","f":1,"z":"shop","r":true,"x":7.56,"y":2.4,"w":2.6,"h":3.59,"note":"อยู่ติดโซนเตา และมีประตูขนของเข้าที่จอดรถ + Loading"},{"id":"s4","n":"ตี่จู้ & ปึงเถ้า","f":1,"z":"worship","r":true,"x":4.66,"y":4.6,"w":2.9,"h":1.39,"note":"ท้ายร้าน หันออกหน้าร้าน"},{"id":"s6","n":"หน้าตี่จู้ / ทางเดิน","f":1,"z":"circ","r":true,"x":4.66,"y":3.6,"w":2.9,"h":1.0,"note":"พื้นที่ยืนไหว้หน้าตี่จู้ เชื่อมหน้าร้านกับครัว"},{"id":"s5","n":"ครัว","f":1,"z":"service","r":true,"x":2.16,"y":3.6,"w":2.5,"h":2.39,"note":"ครัวร้าน อยู่มุมหลังร้าน"},{"id":"c1","n":"ที่ตากผ้า","f":1,"z":"service","r":true,"x":3.96,"y":5.99,"w":4.6,"h":6.01,"note":"หลังคาโปร่งแสง ตามกฎหมายยังนับเป็นพื้นที่มีหลังคา ไม่นับเป็นที่ว่าง"},{"id":"c2","n":"ซักล้าง","f":1,"z":"service","r":true,"x":8.56,"y":5.99,"w":1.6,"h":6.01,"note":"หลังคาโปร่งแสง อยู่ติดที่ตากผ้า"},{"id":"h0","n":"ชานทางเข้าบ้าน","f":1,"z":"circ","r":false,"x":2.16,"y":12.0,"w":2.2,"h":6.4,"note":"เข้าบ้านจากทางเดินด้านซ้าย"},{"id":"h1","n":"โถงบ้าน / ห้องรับแขก","f":1,"z":"home","r":true,"x":4.36,"y":13.6,"w":4.8,"h":4.8,"note":"มีส่วนกินข้าวอยู่ใกล้ Pantry"},{"id":"h2","n":"Pantry (ครัวเบา)","f":1,"z":"service","r":true,"x":4.36,"y":12.0,"w":3.8,"h":1.6,"note":"ด้านที่ติดลานกลาง"},{"id":"h3","n":"ห้องน้ำ","f":1,"z":"home","r":true,"x":8.16,"y":12.0,"w":2.0,"h":1.6,"note":""},{"id":"h4","n":"บันได","f":1,"z":"circ","r":true,"x":9.16,"y":13.6,"w":1.0,"h":4.8,"note":"ขึ้นชั้น 2 บ้าน"},{"id":"h5","n":"ห้องนอน 1 + ห้องน้ำ","f":1,"z":"home","r":true,"x":2.16,"y":18.4,"w":2.667,"h":3.78,"note":"ห้องนอนพร้อมห้องน้ำในตัว"},{"id":"h6","n":"ห้องนอน 2 + ห้องน้ำ","f":1,"z":"home","r":true,"x":4.827,"y":18.4,"w":2.667,"h":3.78,"note":"ห้องนอนพร้อมห้องน้ำในตัว"},{"id":"h7","n":"ห้องนอน 3 + ห้องน้ำ","f":1,"z":"home","r":true,"x":7.494,"y":18.4,"w":2.666,"h":3.78,"note":"ห้องนอนพร้อมห้องน้ำในตัว"},{"id":"x0","n":"ทางลาดรถ","f":1,"z":"circ","r":false,"ex":true,"x":10.16,"y":0,"w":3.0,"h":1.4,"note":"ทางรถขึ้นระดับพื้นที่ยกหนีน้ำ"},{"id":"x1","n":"ที่จอดรถ + Loading","f":1,"z":"parking","r":true,"ex":true,"x":10.16,"y":1.4,"w":3.3,"h":5.9,"note":"ใช้อาคารเดิม มีประตูขนของจากร้าน"},{"id":"x4","n":"ที่จอดรถ + Loading","f":1,"z":"parking","r":true,"ex":true,"x":11.16,"y":7.3,"w":3.7,"h":4.7,"note":"ต่อจากช่วงหน้า ขนของเข้าโกดังได้"},{"id":"x5","n":"บันไดขึ้นชั้น 2 อาคารเดิม","f":1,"z":"circ","r":true,"ex":true,"x":10.16,"y":7.3,"w":1.0,"h":4.0,"note":"ขึ้นไป Storage ชั้น 2"},{"id":"x2","n":"โกดังข้าว","f":1,"z":"storage","r":true,"ex":true,"x":10.16,"y":12.0,"w":5.8,"h":10.4,"note":"ใช้อาคารเดิม"},{"id":"p1","n":"ที่จอดรถ","f":1,"z":"parking","r":false,"x":-6.35,"y":18.1,"w":5.02,"h":4.99,"note":"ลานจอดกลางแจ้งหลังบ้าน 2 คัน ช่องละ 2.5 × 5.0 ม."},{"id":"u1","n":"ห้องพระ","f":2,"z":"worship","r":true,"x":2.16,"y":12.0,"w":8.0,"h":1.6,"note":"ด้านหน้าชั้น 2 หันออกลานกลาง"},{"id":"u2","n":"Gym + Library","f":2,"z":"home","r":true,"x":2.16,"y":13.6,"w":7.0,"h":4.8,"note":""},{"id":"u3","n":"บันได","f":2,"z":"circ","r":true,"x":9.16,"y":13.6,"w":1.0,"h":4.8,"note":"ขึ้นจากชั้น 1"},{"id":"u4","n":"ห้องนอน 4","f":2,"z":"home","r":true,"x":2.16,"y":18.4,"w":3.2,"h":3.78,"note":""},{"id":"u5","n":"ห้องน้ำ","f":2,"z":"home","r":true,"x":5.36,"y":18.4,"w":1.6,"h":3.78,"note":"เข้าได้จากห้องนอนทั้งสองห้อง"},{"id":"u6","n":"ห้องนอน 5","f":2,"z":"home","r":true,"x":6.96,"y":18.4,"w":3.2,"h":3.78,"note":""},{"id":"x3","n":"Storage","f":2,"z":"storage","r":true,"ex":true,"x":10.16,"y":6.0,"w":4.4,"h":16.4,"note":"ชั้น 2 อาคารเดิม ต้องตรวจโครงสร้างพื้นเดิมก่อนรับน้ำหนักของ"}],"links":[["st1","s1"],["s1","s2"],["s2","s3"],["s1","s6"],["s6","s4"],["s6","s5"],["s3","x1"],["x0","x1"],["x1","x4"],["x4","x2"],["x4","x5"],["c1","c2"],["c1","h2"],["w1","h0"],["h0","h1"],["h1","h2"],["h1","h3"],["h1","h4"],["h1","h5"],["h1","h6"],["h1","h7"],["w1","p1"],["u3","u2"],["u2","u1"],["u2","u4"],["u2","u6"],["u4","u5"],["u6","u5"]],"marks":[{"id":"m1","t":"ทางเข้าร้าน","x":4.3,"y":-1.5,"d":90},{"id":"m2","t":"ทางเข้ารถ","x":11.6,"y":-1.5,"d":90},{"id":"m3","t":"ทางเข้าบ้าน","x":1.55,"y":-1.5,"d":90},{"id":"m4","t":"เข้าบ้าน","x":3.0,"y":15.6,"d":0},{"id":"m5","t":"ประตูขนของ","x":9.75,"y":2.4,"d":0}],"reqs":[{"id":"r1","t":"หน้าร้านขายของอยู่ด้านหน้าเหมือนเดิม","st":"pending","prop":"in","why":"อยู่ในโซนค้าขายด้านหน้า"},{"id":"r2","t":"Office มองเห็นหน้าร้าน ครัว และโกดัง","st":"pending","prop":"in","why":"Office อยู่ติดโซนเตา มีประตูขนของเข้าที่จอดรถและโกดังในอาคารเดิม"},{"id":"r3","t":"ครัวร้านขนาดใหญ่","st":"pending","prop":"adj","why":"ครัวอยู่มุมหลังร้าน ราว 6 ตร.ม. งานเตาแยกออกไปด้านหน้า"},{"id":"r4","t":"ห้องเตา & ถ่าน แยกจากครัว","st":"pending","prop":"in","why":"แยกโซนเตา + ถ่านไว้ด้านหน้าร้าน"},{"id":"r5","t":"ตี่จู้ & ปึงเถ้า ท้ายร้าน","st":"pending","prop":"in","why":""},{"id":"r6","t":"โรงจอดรถด้านขวาสุด 2 คัน","st":"pending","prop":"adj","why":"ใช้อาคารเดิมด้านหน้าเป็นที่จอดรถ + Loading และมีที่จอดหลังบ้านอีกส่วน"},{"id":"r7","t":"โกดังข้าว เผื่อจอดรถและชาร์จรถไฟฟ้า","st":"pending","prop":"in","why":"โกดังข้าวอยู่ด้านหลังของอาคารเดิม ไม่ต้องสร้างใหม่"},{"id":"r8","t":"ทางเดินเข้าบ้านที่เข็นวีลแชร์ได้","st":"pending","prop":"in","why":"ทางเดินแยกด้านซ้าย ไม่มีขั้น"},{"id":"r9","t":"ห้องนอน 3 ห้องที่ชั้น 1","st":"pending","prop":"in","why":"ห้องนอน 3 ห้องเรียงด้านหลังบ้านชั้น 1"},{"id":"r10","t":"ห้องน้ำในตัวทุกห้องนอน","st":"pending","prop":"adj","why":"ชั้น 1 มีห้องน้ำในตัวทุกห้อง ชั้น 2 ใช้ห้องน้ำร่วมที่เข้าได้จากห้องนอนทั้งสองห้อง"},{"id":"r11","t":"โถงบ้าน / ห้องรับแขก","st":"pending","prop":"in","why":"โถงบ้านมีส่วนกินข้าว อยู่ใกล้ Pantry"},{"id":"r12","t":"ครัวบ้าน","st":"pending","prop":"adj","why":"เป็น Pantry ครัวเบาในบ้าน งานครัวหนักใช้ครัวร้าน"},{"id":"r13","t":"โต๊ะหมู่บูชาชั้น 1 และห้องพระชั้น 2","st":"pending","prop":"adj","why":"ห้องพระอยู่ชั้น 2 ด้านหน้า ชั้น 1 ยังไม่มีตำแหน่งโต๊ะหมู่บูชา"},{"id":"r14","t":"ส่วนซักล้าง ห้องเก็บเสื้อผ้า ห้องเก็บของ","st":"pending","prop":"adj","why":"ซักล้างและที่ตากผ้าอยู่ลานกลาง หลังคาโปร่งแสง ของเก็บอยู่ชั้น 2 อาคารเดิม"},{"id":"r15","t":"Gym & Library ชั้น 2","st":"pending","prop":"in","why":"Gym + Library ชั้น 2 ราว 34 ตร.ม."},{"id":"r16","t":"สวน","st":"pending","prop":"adj","why":"ลานกลางใช้เป็นที่ตากผ้าและซักล้าง พื้นที่สวนเหลือน้อย"},{"id":"r17","t":"สนามบาส / สนามบอล","st":"pending","prop":"out","why":"ที่ดินไม่พอสำหรับสนาม ใช้ลานจอดรถหลังบ้านเล่นได้เมื่อไม่มีรถ"},{"id":"r18","t":"เผื่อทำสระน้ำในอนาคต","st":"pending","prop":"out","why":"ระบบกรองและการดูแลต่อเนื่องมีค่าใช้จ่ายสูง พื้นที่ต่ำ น้ำใต้ดินสูง"},{"id":"r19","t":"ทางลาดและยกพื้นหนีน้ำท่วม","st":"pending","prop":"in","why":"ขั้นบันไดตลอดแนวหน้าร้าน ทางรถเข้าอาคารเดิมเป็นทางลาด"},{"id":"r20","t":"ประตูใหญ่สำหรับขนของ","st":"pending","prop":"in","why":"ประตูจาก Office / โซนเตา เข้าที่จอดรถ + Loading"}]}</script>
+
+<div class="wrap">
+<header class="doc">
+  <div class="top">
+    <div class="eyebrow">FUNCTION DIAGRAM · SITE &amp; BUILDING CONTROL</div>
+    <button class="ghost-btn" id="modeBtn" type="button" title="สำหรับสถาปนิก">✎ จัดผัง</button>
+  </div>
+  <h1>ผังการใช้พื้นที่บนที่ดินจริง Bangpu Cozy</h1>
+  <p class="lede">ทุกห้องวาดตามขนาดจริงบนรูปแปลงที่ดิน พื้นที่ลายเขียวคืออาคารเดิมที่คงไว้ อาคารใหม่อยู่ในแนวเส้นสีส้ม เส้นประสีแดงคือแนวที่สร้างอาคารได้ตามกฎหมาย แตะห้องหรือขอบที่ดินเพื่อดูรายละเอียดและที่มาของข้อกำหนด ตัวเลขด้านขวาคำนวณจากผังนี้ทันที</p>
+  <div class="meta"><span id="optLabel"></span><span id="updLabel"></span><span>ที่ดิน 424 ตร.ม. (1 งาน 6 ตร.วา)</span><span>ผังเมือง: อ.4</span></div>
+  <div class="banner" id="banner"><b>โหมดจัดผัง</b><span>ลากห้องเพื่อย้าย ลากมุมขวาบนเพื่อปรับขนาด ปุ่มลูกศรขยับทีละ 10 ซม. ลูกค้าจะไม่เห็นแถบนี้</span><span id="draftNote"></span></div>
+</header>
+
+<div class="app">
+  <section class="card plan-card" aria-label="ผังที่ดิน">
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="เลือกชั้น">
+        <button type="button" data-floor="1" aria-pressed="true">ชั้น 1</button>
+        <button type="button" data-floor="2" aria-pressed="false">ชั้น 2</button>
+      </div>
+      <div class="toggles">
+        <label><input type="checkbox" id="tgLinks" checked> เส้นความสัมพันธ์</label>
+        <label><input type="checkbox" id="tgGhost" checked> เงาชั้นล่าง</label>
+        <label><input type="checkbox" id="tgEx" checked> อาคารเดิมและโซน</label>
+      </div>
+    </div>
+    <div class="edit-tools">
+      <button class="btn" type="button" id="linkBtn" aria-pressed="false">เชื่อม / ตัดความสัมพันธ์</button>
+      <button class="btn" type="button" id="addBtn">เพิ่มห้องในชั้นนี้</button>
+      <button class="btn" type="button" id="delBtn">ลบห้องที่เลือก</button>
+      <button class="btn primary" type="button" id="saveBtn">บันทึกไฟล์สำหรับลูกค้า</button>
+    </div>
+    <div class="svg-box"><div class="zoom-ctl" role="group" aria-label="ซูมผัง"><button type="button" id="zOut" aria-label="ซูมออก">−</button><output id="zoomLvl">100%</output><button type="button" id="zIn" aria-label="ซูมเข้า">+</button><button type="button" id="zFit" title="ดูทั้งผัง">ทั้งผัง</button></div><svg id="plan" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ผังที่ดินและการจัดวางฟังก์ชัน"></svg></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <aside style="display:grid;gap:16px;min-width:0">
+    <section class="card" aria-label="ตรวจตามกฎหมาย">
+      <h2>ตรวจตามกฎหมาย</h2>
+      <div class="metrics" id="metrics" aria-live="polite"></div>
+      <p class="muted" style="font-size:12px">คิดจากห้องที่มีหลังคา ลาน สวน และทางเดินกลางแจ้งไม่นับเป็นพื้นที่อาคาร</p>
+    </section>
+    <section class="card" aria-label="รายละเอียด">
+      <div class="info" id="info"></div>
+    </section>
+    <section class="card" aria-label="พื้นที่ตามโซน">
+      <h3>พื้นที่ตามโซน (ตร.ม.)</h3>
+      <div class="zsum" id="zsum"></div>
+    </section>
+  </aside>
+</div>
+
+<section class="card editor" aria-label="ตั้งค่าผัง">
+  <h2>ตั้งค่าที่ดินและข้อกำหนด</h2>
+  <div class="form">
+    <label for="fOpt">ชื่อทางเลือก<input id="fOpt" type="text"></label>
+    <label for="fRoad">ความกว้างเขตทางซอย (ม.)<input id="fRoad" type="number" min="1" step="0.1"></label>
+    <label for="fHgt">ความสูงอาคาร (ม.)<input id="fHgt" type="number" min="1" step="0.1"></label>
+    <label for="fUse">ประเภทอาคาร<select id="fUse"><option value="mix">พักอาศัยร่วมค้าขาย (ที่ว่าง ≥ 10%)</option><option value="res">พักอาศัยอย่างเดียว (ที่ว่าง ≥ 30%)</option></select></label>
+  </div>
+  <h3>ขอบที่ดินแต่ละด้าน</h3>
+  <div class="form" id="edgeForm"></div>
+  <h3>รายการห้อง</h3>
+  <div class="tbl"><table id="prog"><thead><tr><th>ชื่อ</th><th>ชั้น</th><th>โซน</th><th>มีหลังคา</th><th>ในอาคารเดิม</th><th>กว้าง (ม.)</th><th>ลึก (ม.)</th><th>ตร.ม.</th><th>หมายเหตุถึงลูกค้า</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section class="card" aria-label="ความต้องการลูกค้า">
+  <h2>สิ่งที่ขอไว้ และสิ่งที่อยู่ในผังนี้</h2>
+  <p class="muted" style="max-width:80ch">บางข้อปรับหรือยังไม่ใส่ เพื่อให้บ้านดูแลรักษาและซ่อมบำรุงได้ง่ายในระยะยาว เหตุผลอยู่ท้ายแต่ละข้อ</p>
+  <div class="req-sum" id="reqSum"></div>
+  <div class="ed-only"><button class="btn" type="button" id="reqApply">ใช้ข้อเสนอของผมกับทุกข้อที่ยังรอยืนยัน</button></div>
+  <div class="tbl"><table class="req" id="reqTbl"><thead><tr><th>#</th><th>สิ่งที่ลูกค้าขอ</th><th>ในผังนี้</th><th>เหตุผล</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<div class="cols">
+  <section class="card" aria-label="ข้อกำหนดที่ใช้วาดผัง">
+    <h2>ข้อกำหนดที่ใช้วาดผังนี้</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>หัวข้อ</th><th>ค่า</th><th>สถานะ</th></tr></thead>
+      <tbody>
+        <tr><td>ร่นจากซอยกว้าง &lt; 10 ม.</td><td>ห่างกึ่งกลางถนน ≥ 3 ม.</td><td><span class="chip warn">ค่ากฎหมายกลาง</span></td></tr>
+        <tr><td>ผนังมีช่องเปิด อาคารสูง ≤ 9 ม.</td><td>ห่างเขตที่ดิน ≥ 2 ม.</td><td><span class="chip warn">ค่ากฎหมายกลาง</span></td></tr>
+        <tr><td>ผนังทึบ</td><td>ห่างเขต ≥ 0.50 ม. หรือชิดเขตเมื่อมีหนังสือยินยอม</td><td><span class="chip warn">ค่ากฎหมายกลาง</span></td></tr>
+        <tr><td>ที่ว่างไม่มีหลังคา</td><td>≥ 10% (ร่วมค้าขาย) / ≥ 30% (อยู่อาศัย) ของพื้นที่ชั้นที่ใหญ่ที่สุด</td><td><span class="chip warn">กฎกระทรวงฉบับที่ 55</span></td></tr>
+        <tr><td>FAR / OSR ประเภท อ.4</td><td>≤ 2 : 1 / ≥ 20%</td><td><span class="chip risk">ค่าในร่างผัง ยังไม่บังคับ</span></td></tr>
+        <tr><td>ความสูงสัมพันธ์กับถนน</td><td>≤ 2 เท่าของระยะถึงเขตถนนฝั่งตรงข้าม</td><td><span class="chip warn">ค่ากฎหมายกลาง</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section class="card" aria-label="ข้อมูลที่ตั้ง">
+    <h2>ที่ตั้งและสิ่งที่ต้องยืนยัน</h2>
+    <ul class="clean">
+      <li>แปลงรูปตัว L หน้ากว้าง 13.17 ม. ติดซอยด้านเดียว</li>
+      <li>ผังเมืองรวมจังหวัด ประเภท <b>อ.4</b> ที่อยู่อาศัยและร้านค้าเป็นกิจการรองของเขต ต้องตรวจโควตากิจการอื่นกับโยธาธิการและผังเมืองจังหวัด <span class="chip risk">ต้องยืนยันกับหน่วยงาน</span></li>
+      <li>อาคารเดิมด้านขวา (ชั้น 1 ราว 131 ตร.ม. ชั้น 2 ราว 109 ตร.ม.) คงไว้ ใช้เป็นโกดังและที่จอดรถในร่ม พื้นที่นับรวมในพื้นที่อาคารทั้งหมด</li>
+      <li>หน้าแปลงมีน้ำท่วมขังช่วงฝนตก จึงยกพื้นชั้นล่างและใช้ทางลาดเข้าอาคาร ระดับอ้างอิงต้องตรวจกับเทศบาล</li>
+      <li>มีหนังสือยินยอมให้ใช้ฐานราก เสา ผนังร่วมกับที่ดินข้างเคียง ด้านที่ได้รับความยินยอมแสดงเป็นเส้นสีเขียวน้ำทะเลบนผัง <span class="chip risk">ต้องยืนยันด้าน</span></li>
+      <li>ความกว้างเขตทางซอยตามรังวัดยังไม่ได้วัด ผังนี้ตั้งไว้ <span id="roadTxt"></span> ม. ถ้าซอยแคบกว่านี้ แนวร่นหน้าอาคารจะถอยเข้ามา</li>
+    </ul>
+  </section>
+</div>
+
+<footer>ผังนี้เป็นแผนภาพการใช้พื้นที่ (function diagram) ไม่ใช่แบบก่อสร้าง ขนาดห้องเป็นค่าประมาณเพื่อดูความเป็นไปได้ ค่าที่ติดสถานะ "ค่ากฎหมายกลาง" ต้องตรวจกับกฎกระทรวงฉบับปัจจุบันและกองช่างเทศบาลก่อนยื่นแบบจริง</footer>
+<a class="home-link" href="./" style="position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:50;font:600 13px 'IBM Plex Sans Thai','Sarabun',sans-serif;background:#2d2940;color:#fff;text-decoration:none;padding:8px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.18)">← เลือกหน้า</a>
+
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+// Snapshot of the pristine page, taken before any rendering, used to write the saved copy.
+const SRC = '<!doctype html>\n' + document.documentElement.outerHTML;
+const STATE_EL = document.getElementById('state');
+const EMBED = JSON.parse(STATE_EL.textContent);
+let S = JSON.parse(JSON.stringify(EMBED));
+
+/* ---------- site geometry (metres, x along the frontage, y into the site) ---------- */
+const SITE = [[0,0],[13.165,0],[18.545,22.379],[-7.289,24.897],[-7.496,16.398],[0.883,16.553]];
+const LAND = 424;
+const NORTH = [0.629,0.777];
+const EDGE_LEN = [13.17,23.02,25.96,8.50,8.38,16.58]; // as measured in Bangpu_Cozy_parcels.dxf
+const EDGE_NAMES = ['หน้าแปลง ติดซอย','ด้านขวา','ด้านหลัง','ด้านซ้าย (ส่วนหลัง)','ด้านซ้าย (รอยหยัก)','ด้านซ้าย (ส่วนหน้า)'];
+const KINDS = {
+  road:{t:'ติดถนนสาธารณะ'},
+  open:{t:'ผนังมีช่องเปิด / ระเบียง'},
+  blank:{t:'ผนังทึบ'},
+  consent:{t:'มีหนังสือยินยอม สร้างชิดเขต'}
+};
+const ZONES = {
+  shop:{t:'ค้าขาย / ออฟฟิศ'}, service:{t:'ครัว / บริการ'}, storage:{t:'โกดัง'}, home:{t:'อยู่อาศัย'},
+  worship:{t:'บูชา'}, parking:{t:'จอดรถ / ลาน'}, garden:{t:'สวน'}, circ:{t:'ทางสัญจร'}
+};
+const ZONE_ORDER = ['shop','service','storage','home','worship','parking','garden','circ'];
+
+const $ = id => document.getElementById(id);
+const fmt = (n,d=1) => isFinite(n) ? n.toLocaleString('th-TH',{minimumFractionDigits:d,maximumFractionDigits:d}) : '–';
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const zc = z => `--c:var(--z-${z});--cb:var(--z-${z}-bg)`;
+const area = b => b.w * b.h;
+// kept building and the architect's zoning, traced from Bangpu_Cozy_Land_color.dwfx (_source/dwfx_to_state.py)
+let EXIST = S.existing || [];
+const REQ_ST = {pending:{t:'รอสรุป',c:'info'}, in:{t:'อยู่ในผัง',c:'ok'}, adj:{t:'ปรับจากที่ขอ',c:'warn'}, out:{t:'ยังไม่ใส่',c:'risk'}};
+
+/* ---------- regulations ---------- */
+function roadSetback(w){ return w < 10 ? Math.max(0, 3 - w/2) : w <= 20 ? w/10 : 2; }
+function edgeDist(kind){
+  if (kind === 'road') return roadSetback(S.site.road);
+  if (kind === 'open') return S.site.height <= 9 ? 2 : 3;
+  if (kind === 'blank') return 0.5;
+  return 0;
+}
+function edgeRule(i){
+  const k = S.site.edges[i], d = edgeDist(k), w = S.site.road;
+  if (k === 'road') return {
+    txt: w < 10
+      ? `ซอยกว้าง ${fmt(w)} ม. แคบกว่า 10 ม. อาคารต้องห่างจากกึ่งกลางถนนอย่างน้อย 3 ม. คิดเป็นระยะร่นจากเขตที่ดิน ${fmt(d,2)} ม.`
+      : `ถนนกว้าง ${fmt(w)} ม. ร่นจากเขตถนน ${fmt(d,2)} ม.`,
+    chips: '<span class="chip warn">ค่ากฎหมายกลาง</span> <span class="chip risk">ต้องวัดเขตทางจริง</span>'};
+  if (k === 'open') return {
+    txt: `ผนังที่มีหน้าต่าง ประตู ช่องระบายอากาศ หรือระเบียง ของอาคารสูงไม่เกิน 9 ม. ต้องห่างเขตที่ดินอย่างน้อย 2 ม. ถ้าสูง 9–23 ม. อย่างน้อย 3 ม. ผังนี้สูง ${fmt(S.site.height)} ม. จึงใช้ ${fmt(d,2)} ม.`,
+    chips: '<span class="chip warn">ค่ากฎหมายกลาง</span>'};
+  if (k === 'blank') return {
+    txt: 'ผนังทึบไม่มีช่องเปิด สร้างห่างเขต 0.50 ม. ได้ ถ้าชิดกว่านั้นต้องมีหนังสือยินยอมจากเจ้าของที่ดินข้างเคียง',
+    chips: '<span class="chip warn">ค่ากฎหมายกลาง</span>'};
+  return {
+    txt: 'มีหนังสือยินยอมให้ใช้ฐานราก เสา และผนังร่วมกัน สร้างชิดเขตที่ดินได้ ผนังด้านนี้ต้องเป็นผนังทึบ',
+    chips: '<span class="chip ok">มีเอกสาร</span> <span class="chip risk">ต้องยืนยันด้าน</span>'};
+}
+
+/* ---------- geometry helpers ---------- */
+function insetPoly(){
+  const n = SITE.length, L = [];
+  for (let i = 0; i < n; i++){
+    const a = SITE[i], b = SITE[(i+1)%n];
+    const len = Math.hypot(b[0]-a[0], b[1]-a[1]);
+    const u = [(b[0]-a[0])/len, (b[1]-a[1])/len], nn = [-u[1], u[0]];
+    const d = edgeDist(S.site.edges[i]);
+    L.push({p:[a[0]+nn[0]*d, a[1]+nn[1]*d], u});
+  }
+  return L.map((l,i) => {
+    const m = L[(i-1+n)%n];
+    const det = m.u[0]*(-l.u[1]) - m.u[1]*(-l.u[0]);
+    if (Math.abs(det) < 1e-9) return l.p;
+    const dx = l.p[0]-m.p[0], dy = l.p[1]-m.p[1];
+    const t = (dx*(-l.u[1]) - dy*(-l.u[0])) / det;
+    return [m.p[0]+m.u[0]*t, m.p[1]+m.u[1]*t];
+  });
+}
+function inPoly(pt, poly){
+  let c = false;
+  for (let i = 0, j = poly.length-1; i < poly.length; j = i++){
+    const [xi,yi] = poly[i], [xj,yj] = poly[j];
+    if ((yi > pt[1]) !== (yj > pt[1]) && pt[0] < (xj-xi)*(pt[1]-yi)/(yj-yi) + xi) c = !c;
+  }
+  return c;
+}
+function rectInside(b, poly){
+  const e = 0.01, x0 = b.x+e, y0 = b.y+e, x1 = b.x+b.w-e, y1 = b.y+b.h-e;
+  const nx = Math.max(2, Math.ceil(b.w/0.2)), ny = Math.max(2, Math.ceil(b.h/0.2));
+  for (let i = 0; i <= nx; i++){ const x = x0+(x1-x0)*i/nx; if (!inPoly([x,y0],poly) || !inPoly([x,y1],poly)) return false; }
+  for (let j = 0; j <= ny; j++){ const y = y0+(y1-y0)*j/ny; if (!inPoly([x0,y],poly) || !inPoly([x1,y],poly)) return false; }
+  return true;
+}
+function rectHitsPoly(b, poly){
+  const nx = Math.max(2, Math.ceil(b.w/0.25)), ny = Math.max(2, Math.ceil(b.h/0.25));
+  for (let i = 0; i <= nx; i++) for (let j = 0; j <= ny; j++){
+    if (inPoly([b.x+0.05+(b.w-0.1)*i/nx, b.y+0.05+(b.h-0.1)*j/ny], poly)) return true;
+  }
+  return false;
+}
+function polyArea(p){ let a = 0; for (let i = 0; i < p.length; i++){ const q = p[(i+1)%p.length]; a += p[i][0]*q[1] - q[0]*p[i][1]; } return Math.abs(a)/2; }
+function overlap(a, b){
+  const w = Math.min(a.x+a.w, b.x+b.w) - Math.max(a.x, b.x);
+  const h = Math.min(a.y+a.h, b.y+b.h) - Math.max(a.y, b.y);
+  return w > 0.02 && h > 0.02 ? w*h : 0;
+}
+
+/* ---------- analysis ---------- */
+function analyse(){
+  const ins = insetPoly();
+  const st = {};
+  const exOn = f => EXIST.filter(e => e.f === f);
+  for (const b of S.blocks){
+    const exs = exOn(b.f);
+    st[b.id] = {
+      outSite: !rectInside(b, SITE),
+      // rooms placed inside the kept building follow its walls, not the new-build setbacks
+      outBuild: b.r && !b.ex && !rectInside(b, ins),
+      outEx: !!b.ex && !exs.some(e => rectInside(b, e.pts)),
+      onEx: b.r && !b.ex && exs.some(e => rectHitsPoly(b, e.pts)),
+      ovl: b.r && S.blocks.some(o => o !== b && o.r && o.f === b.f && overlap(o,b) > 0)
+    };
+    st[b.id].bad = st[b.id].outSite || st[b.id].outBuild || st[b.id].outEx || st[b.id].onEx;
+  }
+  // floor area: new roofed rooms + the kept building (rooms inside it are already counted by its outline)
+  const floors = {}, exArea = {};
+  for (const e of EXIST){ exArea[e.f] = (exArea[e.f]||0) + polyArea(e.pts); floors[e.f] = (floors[e.f]||0) + polyArea(e.pts); }
+  for (const b of S.blocks) if (b.r && !b.ex) floors[b.f] = (floors[b.f]||0) + area(b);
+  const gfa = Object.values(floors).reduce((a,v) => a+v, 0);
+  const foot = Math.max(0, ...Object.values(floors));
+  const open = Math.max(LAND - foot, 0);
+  const roofed = S.blocks.filter(b => b.r);
+  const front = Math.min(roofed.length ? Math.min(...roofed.map(b => b.y)) : 99, ...EXIST.map(e => Math.min(...e.pts.map(p => p[1]))));
+  return {
+    ins, st, floors, exArea, gfa, foot, open,
+    far: gfa/LAND, osr: gfa > 0 ? open/gfa*100 : 0,
+    openPct: foot > 0 ? open/foot*100 : 0, cov: foot/LAND*100,
+    hMax: 2*(front + S.site.road),
+    badCount: S.blocks.filter(b => st[b.id].bad).length,
+    ovlCount: S.blocks.filter(b => st[b.id].ovl).length
+  };
+}
+
+/* ---------- view state ---------- */
+let floor = 1, sel = null, edit = false, linkFrom = null;
+let A = analyse();
+
+/* ---------- plan rendering ---------- */
+const svg = $('plan');
+const VB = {x:-9.6, y:-27, w:31.6};
+function Y(y){ return -y; }
+function pts(poly){ return poly.map(p => `${p[0].toFixed(3)},${Y(p[1]).toFixed(3)}`).join(' '); }
+
+function fitLabel(b){
+  const rot = b.w < 1.7 && b.h > b.w*2;
+  const W = rot ? b.h : b.w, H = rot ? b.w : b.h;
+  const vis = s => s.replace(/[ัิ-ฺ็-๎]/g,'').length;
+  let fs = Math.min(0.5, Math.max(0.26, Math.min(W,H)*0.24));
+  let lines = [b.n];
+  if (vis(b.n)*fs*0.55 > W*0.92){
+    const parts = b.n.split(/\s(?=[(/+&])|\s\/\s|\s\+\s/);
+    const cut = b.n.lastIndexOf(' ', Math.ceil(b.n.length/2)+4);
+    if (cut > 0) lines = [b.n.slice(0,cut), b.n.slice(cut+1)];
+    else if (parts.length > 1) lines = parts;
+  }
+  const longest = Math.max(...lines.map(vis));
+  fs = Math.max(0.18, Math.min(fs, W*0.92/(longest*0.55)));
+  if (H < fs*(lines.length+1)*1.25) lines = [b.n], fs = Math.max(0.18, Math.min(fs, W*0.92/(vis(b.n)*0.55)));
+  return {rot, fs, lines};
+}
+
+function renderPlan(){
+  const roadW = S.site.road;
+  const vbH = 27 + roadW + 3.2;
+  planBase = {x:VB.x, y:VB.y, w:VB.w, h:vbH};
+  if (view) setView(view); else applyView();
+  let h = `<defs><pattern id="hatch" width=".45" height=".45" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".45" height=".45" class="site-bg"/><line x1="0" y1="0" x2="0" y2=".45" stroke="var(--risk)" stroke-width=".05" opacity=".45"/></pattern>` +
+    `<pattern id="hEx1" width=".5" height=".5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".5" height=".5" fill="var(--sheet)"/><line x1="0" y1="0" x2="0" y2=".5" stroke="var(--ex)" stroke-width=".07" opacity=".7"/></pattern>` +
+    `<pattern id="hEx2" width=".5" height=".5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width=".5" height=".5" fill="var(--sheet)"/><line x1="0" y1="0" x2="0" y2=".5" stroke="var(--ex2)" stroke-width=".12" opacity=".8"/></pattern></defs>`;
+  // road
+  h += `<rect class="road" x="${VB.x}" y="0" width="${VB.w}" height="${roadW}"/>`;
+  h += `<line class="road-c" x1="${VB.x}" y1="${roadW/2}" x2="${VB.x+VB.w}" y2="${roadW/2}"/>`;
+  h += `<text class="tm" x="${VB.x+VB.w-0.6}" y="${roadW-0.6}" font-size=".55" text-anchor="end">ซอยด้านหน้า · เขตทาง ${fmt(roadW)} ม.</text>`;
+  // site + setback zone + buildable
+  h += `<polygon class="site" points="${pts(SITE)}"/>`;
+  h += `<polygon class="build" points="${pts(A.ins)}"/>`;
+  // edges
+  SITE.forEach((a,i) => {
+    const b = SITE[(i+1)%SITE.length], k = S.site.edges[i];
+    const isSel = sel && sel.type === 'edge' && sel.i === i;
+    h += `<line class="edge ${k==='consent'?'consent':''} ${isSel?'sel':''}" x1="${a[0]}" y1="${Y(a[1])}" x2="${b[0]}" y2="${Y(b[1])}"/>`;
+    const len = EDGE_LEN[i];
+    const mx = (a[0]+b[0])/2, my = (a[1]+b[1])/2;
+    const u = [(b[0]-a[0])/len, (b[1]-a[1])/len], out = [u[1], -u[0]];
+    const lx = mx + out[0]*0.75, ly = my + out[1]*0.75;
+    let ang = Math.atan2(-(b[1]-a[1]), b[0]-a[0]) * 180/Math.PI;
+    if (ang > 90) ang -= 180; if (ang < -90) ang += 180;
+    if (i !== 0) h += `<text class="dim" font-size=".5" text-anchor="middle" dominant-baseline="middle" transform="translate(${lx.toFixed(2)} ${Y(ly).toFixed(2)}) rotate(${ang.toFixed(1)})">${len.toFixed(2)}</text>`;
+    else h += `<text class="dim" font-size=".5" text-anchor="middle" x="${mx}" y="${Y(my)+0.75}">${len.toFixed(2)}</text>`;
+    h += `<line class="edge-hit" data-edge="${i}" x1="${a[0]}" y1="${Y(a[1])}" x2="${b[0]}" y2="${Y(b[1])}"><title>${esc(EDGE_NAMES[i])}</title></line>`;
+  });
+  // kept building, architect's zoning and the line the new building may reach
+  if ($('tgEx').checked){
+    for (const e of EXIST.filter(e => e.f === floor)){
+      const isSel = sel && sel.type === 'ex' && sel.id === e.id;
+      const c = e.pts.reduce((a,p) => [a[0]+p[0]/e.pts.length, a[1]+p[1]/e.pts.length], [0,0]);
+      h += `<polygon class="exb f${e.f} ${isSel?'sel':''}" data-ex="${e.id}" fill="url(#hEx${e.f})" points="${pts(e.pts)}"/>`;
+      if (!S.blocks.some(b => b.ex && b.f === e.f)) h += `<text class="ex-lbl" fill="var(--ex${e.f===2?'2':''})" font-size=".5" text-anchor="middle" x="${c[0]}" y="${Y(c[1])}">${esc(e.n)}</text>`;
+    }
+    for (const z of (S.zones||[]).filter(z => z.f.includes(floor))){
+      const x0 = Math.min(...z.pts.map(p => p[0])), y1 = Math.max(...z.pts.map(p => p[1]));
+      h += `<g style="${zc(z.z)}"><polygon class="zone-a" points="${pts(z.pts)}"/></g>`;
+      h += `<text class="zone-lbl" style="${zc(z.z)}" font-size=".36" x="${x0+0.12}" y="${Y(y1)+0.42}">${esc(z.n)}</text>`;
+    }
+    if (S.line) h += `<polyline class="arch" points="${pts(S.line)}"/>`;
+  }
+  // ghost of floor below
+  if (floor === 2 && $('tgGhost').checked){
+    for (const b of S.blocks.filter(b => b.f === 1 && b.r)){
+      h += `<g class="ghost"><rect x="${b.x}" y="${Y(b.y+b.h)}" width="${b.w}" height="${b.h}"/></g>`;
+    }
+  }
+  // blocks
+  const cur = S.blocks.filter(b => b.f === floor);
+  for (const b of cur){
+    const s = A.st[b.id], isSel = sel && sel.type === 'block' && sel.id === b.id;
+    const cls = ['blk', b.r?'':'out', b.ex?'inex':'', s.bad?'bad':'', (!s.bad && s.ovl)?'ovl':'', isSel?'sel':''].join(' ');
+    const L = fitLabel(b), cx = b.x + b.w/2, cy = Y(b.y + b.h/2);
+    const nLines = L.lines.length + 1, lh = L.fs*1.2;
+    let tx = '';
+    L.lines.forEach((ln,k) => {
+      tx += `<tspan x="0" y="${((k-(nLines-1)/2)*lh).toFixed(3)}">${esc((s.bad && k===0 ? '⚠ ' : '') + ln)}</tspan>`;
+    });
+    const arTxt = `${fmt(area(b))} ตร.ม.` + (b.r ? '' : ' · กลางแจ้ง');
+    tx += `<tspan class="ar" x="0" y="${(((nLines-1)-(nLines-1)/2)*lh).toFixed(3)}" font-size="${(L.fs*0.78).toFixed(3)}">${arTxt}</tspan>`;
+    h += `<g class="${cls}" data-id="${b.id}" style="${zc(b.z)}"><rect class="b" x="${b.x}" y="${Y(b.y+b.h)}" width="${b.w}" height="${b.h}" rx=".08"/>`;
+    h += `<text class="nm" font-size="${L.fs.toFixed(3)}" text-anchor="middle" dominant-baseline="middle" transform="translate(${cx.toFixed(3)} ${cy.toFixed(3)})${L.rot?' rotate(-90)':''}">${tx}</text>`;
+    if (edit && isSel) h += `<rect class="handle" data-handle="${b.id}" x="${b.x+b.w-0.28}" y="${Y(b.y+b.h)-0.28}" width=".56" height=".56" rx=".08"/>`;
+    h += `</g>`;
+  }
+  // links
+  if ($('tgLinks').checked){
+    const byId = Object.fromEntries(S.blocks.map(b => [b.id,b]));
+    for (const [p,q] of S.links){
+      const a = byId[p], b = byId[q];
+      if (!a || !b || a.f !== floor || b.f !== floor) continue;
+      const ax = a.x+a.w/2, ay = Y(a.y+a.h/2), bx = b.x+b.w/2, by = Y(b.y+b.h/2);
+      h += `<line class="link" x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}"/><circle class="link-dot" cx="${ax}" cy="${ay}" r=".09"/><circle class="link-dot" cx="${bx}" cy="${by}" r=".09"/>`;
+    }
+  }
+  // entry markers (ground floor only)
+  if (floor === 1){
+    for (const m of S.marks){
+      const r = -m.d;
+      h += `<g class="mk" data-mark="${m.id}" transform="translate(${m.x} ${Y(m.y)})"><path transform="rotate(${r+90})" d="M0,-.55 L.38,.15 L.12,.15 L.12,.55 L-.12,.55 L-.12,.15 L-.38,.15 Z"/><text font-size=".42" text-anchor="middle" y="${m.y < 0 || m.d % 180 === 0 ? 1.05 : -0.75}">${esc(m.t)}</text></g>`;
+    }
+  }
+  // north arrow + scale bar
+  const nx = 18.6, ny = -24.6, ang = Math.atan2(NORTH[0], NORTH[1]) * 180/Math.PI;
+  h += `<g class="north" transform="translate(${nx} ${ny}) rotate(${ang.toFixed(1)})"><circle r="1.05" fill="none" stroke="var(--line)" stroke-width=".05"/><path d="M0,-.95 L.32,.55 L0,.3 L-.32,.55 Z"/><text class="t" font-size=".5" text-anchor="middle" y="-1.2" transform="rotate(${(-ang).toFixed(1)} 0 -1.4)">N</text></g>`;
+  const sy = roadW + 1.6, sx = VB.x + 0.6;
+  h += `<g>`;
+  for (let i = 0; i < 5; i++) h += `<rect x="${sx+i}" y="${sy}" width="1" height=".22" fill="${i%2?'var(--sheet)':'var(--ink)'}" stroke="var(--ink)" stroke-width=".03"/>`;
+  h += `<text class="dim" font-size=".42" x="${sx}" y="${sy+0.85}">0</text><text class="dim" font-size=".42" x="${sx+5}" y="${sy+0.85}" text-anchor="middle">5 ม.</text>`;
+  h += `<text class="dim" font-size=".42" x="${sx+6.2}" y="${sy+0.25}">ชั้น ${floor} · ห้องตามขนาดจริง</text></g>`;
+  svg.innerHTML = h;
+}
+
+/* ---------- legend ---------- */
+function renderLegend(){
+  let h = ZONE_ORDER.map(z => `<span><i class="sw" style="${zc(z)}"></i>${ZONES[z].t}</span>`).join('');
+  h += `<span><i class="sw ex"></i>อาคารเดิม ชั้น 1 (คงไว้)</span><span><i class="sw ex2"></i>อาคารเดิม ชั้น 2</span><span><i class="sw arch"></i>แนวอาคารใหม่</span><span><i class="sw hatch"></i>ระยะร่น ห้ามสร้างอาคาร</span><span><i class="sw line"></i>แนวที่สร้างอาคารได้</span><span><i class="sw consent"></i>ด้านที่มีหนังสือยินยอม</span><span><i class="sw" style="--c:var(--muted);--cb:transparent;border-style:dashed"></i>ลาน / กลางแจ้ง</span>`;
+  $('legend').innerHTML = h;
+}
+
+/* ---------- metrics ---------- */
+function renderMetrics(){
+  const need = S.site.use === 'res' ? 30 : 10;
+  const okFar = A.far <= 2, okOsr = A.osr >= 20, okOpen = A.openPct >= need, okH = S.site.height <= A.hMax;
+  const size = A.gfa >= 10000 ? 'ขนาดใหญ่พิเศษ' : (A.gfa >= 2000 || (S.site.height > 15 && A.gfa > 1000)) ? 'อาคารขนาดใหญ่' : 'อาคารทั่วไป';
+  const m = (cls, val, lbl, wide) => `<div class="m ${cls}${wide?' wide':''}"><b>${val}</b><span>${lbl}</span></div>`;
+  $('metrics').innerHTML =
+    m(A.badCount ? 'fail' : 'pass', A.badCount ? `${A.badCount} ห้องล้ำแนว` : 'อยู่ในแนวทุกห้อง',
+      A.badCount ? 'ห้องที่มีกรอบแดงอยู่นอกแนวที่สร้างได้ นอกที่ดิน หรือทับอาคารเดิม' : 'ห้องใหม่อยู่ในแนวที่สร้างได้ และไม่ทับอาคารเดิม', true) +
+    m('', `${fmt(A.gfa)}`, `พื้นที่อาคารรวม ตร.ม. รวมอาคารเดิม ${fmt((A.exArea[1]||0)+(A.exArea[2]||0))}`) +
+    m(A.gfa < 2000 ? 'pass' : 'fail', size, 'ประเภทตามขนาด · เกณฑ์อาคารใหญ่ 2,000 ตร.ม.') +
+    m(okFar ? 'pass' : 'fail', `${fmt(A.far,2)} : 1`, `FAR · ร่างผัง อ.4 ≤ 2 : 1`) +
+    m(okOsr ? 'pass' : 'fail', `${fmt(A.osr)}%`, `OSR · ร่างผัง อ.4 ≥ 20%`) +
+    m(okOpen ? 'pass' : 'fail', `${fmt(A.openPct)}%`, `ที่ว่างตาม กฎ.55 ต้อง ≥ ${need}%`) +
+    m('', `${fmt(A.cov)}%`, `พื้นที่อาคารคลุมดิน`) +
+    m(okH ? 'pass' : 'fail', `${fmt(S.site.height)} / ${fmt(A.hMax)} ม.`, `ความสูงอาคาร / สูงสุดตามกฎ 2 เท่าของระยะถึงฝั่งตรงข้ามถนน`, true) +
+    (A.ovlCount ? m('fail', `${A.ovlCount} ห้องทับกัน`, 'ห้องที่มีกรอบส้มวางซ้อนกัน พื้นที่รวมจะนับเกิน', true) : '');
+}
+
+/* ---------- info card ---------- */
+function renderInfo(){
+  const el = $('info');
+  if (!sel){
+    el.innerHTML = `<h3>แตะห้องหรือขอบที่ดิน</h3><p class="muted">เพื่อดูขนาด ความต้องการที่ให้ไว้ และข้อกำหนดของแต่ละด้าน สลับชั้น 1 และชั้น 2 ได้ที่ปุ่มด้านบนผัง</p>` +
+      `<p class="muted" style="font-size:13px">ลายเขียวคืออาคารเดิมที่คงไว้ ลายเส้นแดงคือระยะร่นที่สร้างอาคารไม่ได้ แต่ใช้เป็นสวน ลาน หรือทางเดินได้</p>`;
+    return;
+  }
+  if (sel.type === 'ex'){
+    const e = EXIST.find(x => x.id === sel.id);
+    if (!e){ sel = null; return renderInfo(); }
+    const inside = S.blocks.filter(b => b.ex && b.f === e.f);
+    el.innerHTML = `<div class="hd"><span class="sw ${e.f===2?'ex2':'ex'}"></span><h3>${esc(e.n)}</h3></div>` +
+      `<dl><dt>พื้นที่</dt><dd>${fmt(polyArea(e.pts))} ตร.ม.</dd><dt>ใช้เป็น</dt><dd>${esc(e.use||'–')}</dd></dl>` +
+      `<div><span class="chip ok">คงไว้ ไม่รื้อ</span> <span class="chip warn">นับรวมในพื้นที่อาคาร</span></div>` +
+      `<p class="muted" style="font-size:13px">อาคารเดิมไม่ต้องร่นตามแนวอาคารใหม่ ${inside.length ? 'ห้องในอาคารเดิม: ' + inside.map(b => esc(b.n)).join(' · ') : ''}</p>`;
+    return;
+  }
+  if (sel.type === 'edge'){
+    const i = sel.i, a = SITE[i], b = SITE[(i+1)%SITE.length], k = S.site.edges[i], r = edgeRule(i);
+    el.innerHTML = `<div class="hd"><h3>${EDGE_NAMES[i]}</h3><span class="chip info">${EDGE_LEN[i].toFixed(2)} ม.</span></div>` +
+      `<dl><dt>ลักษณะ</dt><dd>${KINDS[k].t}</dd><dt>ระยะร่น</dt><dd>${fmt(edgeDist(k),2)} ม.</dd></dl><p>${r.txt}</p><div>${r.chips}</div>`;
+    return;
+  }
+  const b = S.blocks.find(x => x.id === sel.id);
+  if (!b){ sel = null; return renderInfo(); }
+  const s = A.st[b.id];
+  const byId = Object.fromEntries(S.blocks.map(x => [x.id,x]));
+  const rel = S.links.filter(l => l.includes(b.id)).map(l => byId[l[0]===b.id?l[1]:l[0]]).filter(Boolean);
+  let status = '<span class="chip ok">อยู่ในแนวที่สร้างได้</span>';
+  if (!b.r) status = s.outSite ? '<span class="chip risk">อยู่นอกที่ดิน</span>' : '<span class="chip info">กลางแจ้ง ไม่นับพื้นที่อาคาร</span>';
+  else if (s.outSite) status = '<span class="chip risk">อยู่นอกที่ดิน</span>';
+  else if (s.outBuild) status = '<span class="chip risk">ล้ำแนวร่น</span>';
+  else if (s.outEx) status = '<span class="chip risk">ล้นออกนอกอาคารเดิม</span>';
+  else if (s.onEx) status = '<span class="chip risk">ทับอาคารเดิม</span>';
+  else if (b.ex) status = '<span class="chip ok">อยู่ในอาคารเดิม</span>';
+  if (s.ovl) status += ' <span class="chip warn">ทับห้องอื่น</span>';
+  el.innerHTML = `<div class="hd"><span class="sw" style="${zc(b.z)}"></span><h3>${esc(b.n)}</h3></div>` +
+    `<dl><dt>ชั้น</dt><dd>${b.f}</dd><dt>โซน</dt><dd>${ZONES[b.z].t}</dd><dt>ขนาด</dt><dd>${fmt(b.w)} × ${fmt(b.h)} ม.</dd><dt>พื้นที่</dt><dd>${fmt(area(b))} ตร.ม.</dd></dl>` +
+    `<div>${status}</div>` +
+    (b.note ? `<div class="note">${esc(b.note)}</div>` : '') +
+    (rel.length ? `<p class="muted" style="font-size:13px">ต่อกับ: ${rel.map(r => esc(r.n) + (r.f !== b.f ? ` (ชั้น ${r.f})` : '')).join(' · ')}</p>` : '');
+}
+
+/* ---------- zone summary ---------- */
+function renderZones(){
+  const rows = ZONE_ORDER.map(z => {
+    const f1 = S.blocks.filter(b => b.z===z && b.r && !b.ex && b.f===1).reduce((a,b) => a+area(b), 0);
+    const f2 = S.blocks.filter(b => b.z===z && b.r && !b.ex && b.f===2).reduce((a,b) => a+area(b), 0);
+    return {z, f1, f2};
+  }).filter(r => r.f1 || r.f2);
+  let h = `<div class="zrow h"><span></span><span>โซน</span><span class="n">ชั้น 1</span><span class="n">ชั้น 2</span><span class="n">รวม</span></div>`;
+  for (const r of rows) h += `<div class="zrow"><span class="sw" style="${zc(r.z)}"></span><span>${ZONES[r.z].t}</span><span class="n">${r.f1?fmt(r.f1):'–'}</span><span class="n">${r.f2?fmt(r.f2):'–'}</span><span class="n">${fmt(r.f1+r.f2)}</span></div>`;
+  if (EXIST.length){ const e1 = A.exArea[1]||0, e2 = A.exArea[2]||0; h += `<div class="zrow"><span class="sw ex"></span><span>อาคารเดิม (คงไว้)</span><span class="n">${e1?fmt(e1):'–'}</span><span class="n">${e2?fmt(e2):'–'}</span><span class="n">${fmt(e1+e2)}</span></div>`; }
+  h += `<div class="zrow tot"><span></span><span>รวมพื้นที่อาคาร</span><span class="n">${fmt(A.floors[1]||0)}</span><span class="n">${fmt(A.floors[2]||0)}</span><span class="n">${fmt(A.gfa)}</span></div>`;
+  $('zsum').innerHTML = h;
+}
+
+/* ---------- editor ---------- */
+function renderEditor(){
+  $('fOpt').value = S.meta.option; $('fRoad').value = S.site.road; $('fHgt').value = S.site.height; $('fUse').value = S.site.use;
+  $('edgeForm').innerHTML = SITE.map((a,i) => {
+    const len = EDGE_LEN[i].toFixed(2);
+    const opts = Object.keys(KINDS).filter(k => i===0 ? true : k!=='road').map(k => `<option value="${k}"${S.site.edges[i]===k?' selected':''}>${KINDS[k].t}</option>`).join('');
+    return `<label for="edge${i}">${EDGE_NAMES[i]} · ${len} ม.<select id="edge${i}" data-edge-sel="${i}">${opts}</select></label>`;
+  }).join('');
+  const zopts = z => ZONE_ORDER.map(k => `<option value="${k}"${k===z?' selected':''}>${ZONES[k].t}</option>`).join('');
+  $('prog').tBodies[0].innerHTML = S.blocks.map(b => `<tr data-row="${b.id}" class="${sel&&sel.id===b.id?'sel':''}">
+    <td><input id="n_${b.id}" data-k="n" value="${esc(b.n)}" aria-label="ชื่อห้อง"></td>
+    <td><select id="f_${b.id}" data-k="f" aria-label="ชั้น"><option value="1"${b.f===1?' selected':''}>1</option><option value="2"${b.f===2?' selected':''}>2</option></select></td>
+    <td><select id="z_${b.id}" data-k="z" aria-label="โซน">${zopts(b.z)}</select></td>
+    <td style="text-align:center"><input id="r_${b.id}" data-k="r" type="checkbox"${b.r?' checked':''} aria-label="มีหลังคา"></td>
+    <td style="text-align:center"><input id="x_${b.id}" data-k="ex" type="checkbox"${b.ex?' checked':''} aria-label="อยู่ในอาคารเดิม"></td>
+    <td><input id="w_${b.id}" data-k="w" type="number" step="0.1" min="0.3" value="${+b.w.toFixed(2)}" aria-label="กว้าง"></td>
+    <td><input id="h_${b.id}" data-k="h" type="number" step="0.1" min="0.3" value="${+b.h.toFixed(2)}" aria-label="ลึก"></td>
+    <td><input id="a_${b.id}" data-k="a" type="number" step="0.5" min="0.5" value="${+area(b).toFixed(1)}" aria-label="พื้นที่"></td>
+    <td><input id="note_${b.id}" data-k="note" value="${esc(b.note||'')}" aria-label="หมายเหตุ"></td></tr>`).join('');
+}
+function syncRow(b){
+  const set = (id,v) => { const e = $(id); if (e && document.activeElement !== e) e.value = v; };
+  set('w_'+b.id, +b.w.toFixed(2)); set('h_'+b.id, +b.h.toFixed(2)); set('a_'+b.id, +area(b).toFixed(1));
+}
+
+/* ---------- client requests ---------- */
+function renderReqSum(){
+  const R = S.reqs || [], cnt = k => R.filter(q => q.st === k).length;
+  $('reqSum').innerHTML = ['in','adj','out','pending'].filter(k => cnt(k)).map(k => `<span><span class="chip ${REQ_ST[k].c}">${REQ_ST[k].t}</span> ${cnt(k)} ข้อ</span>`).join('');
+}
+function renderReqs(){
+  const R = S.reqs || [];
+  const opt = st => Object.keys(REQ_ST).map(k => `<option value="${k}"${k===st?' selected':''}>${REQ_ST[k].t}</option>`).join('');
+  $('reqTbl').tBodies[0].innerHTML = R.map((q,i) => `<tr data-req="${q.id}"><td>${i+1}</td><td>${esc(q.t)}</td>` +
+    `<td><span class="cl-only chip ${REQ_ST[q.st].c}">${REQ_ST[q.st].t}</span><span class="ed-only"><select id="rs_${q.id}" data-rk="st" aria-label="สถานะ">${opt(q.st)}</select><span class="prop">ข้อเสนอ: ${REQ_ST[q.prop||'pending'].t}</span></span></td>` +
+    `<td><span class="cl-only">${q.st === 'pending' ? '<span class="muted">สรุปร่วมกันในการประชุมครั้งถัดไป</span>' : esc(q.why||'')}</span><span class="ed-only"><input id="rw_${q.id}" data-rk="why" value="${esc(q.why||'')}" aria-label="เหตุผล"></span></td></tr>`).join('');
+  renderReqSum();
+}
+$('reqTbl').addEventListener('input', e => {
+  const tr = e.target.closest('tr[data-req]'); if (!tr) return;
+  const q = (S.reqs||[]).find(x => x.id === tr.dataset.req); if (!q) return;
+  q[e.target.dataset.rk] = e.target.value; changed();
+  if (e.target.dataset.rk === 'st') renderReqs(); else renderReqSum();
+});
+$('reqApply').onclick = () => {
+  let n = 0; for (const q of (S.reqs||[])) if (q.st === 'pending' && q.prop){ q.st = q.prop; n++; }
+  changed(); renderReqs(); toast(n ? `ใช้ข้อเสนอกับ ${n} ข้อแล้ว ตรวจและแก้เหตุผลได้ในตาราง` : 'ไม่มีข้อที่รอยืนยัน');
+};
+
+/* ---------- render all ---------- */
+function render(){
+  EXIST = S.existing || [];
+  A = analyse();
+  renderPlan(); renderMetrics(); renderInfo(); renderZones();
+  $('optLabel').textContent = S.meta.option;
+  $('updLabel').textContent = 'ปรับผังล่าสุด ' + new Date(S.meta.updated + 'T00:00:00').toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});
+  $('roadTxt').textContent = fmt(S.site.road);
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.floor === floor)));
+  document.querySelectorAll('#prog tr[data-row]').forEach(tr => tr.classList.toggle('sel', !!(sel && sel.id === tr.dataset.row)));
+}
+
+/* ---------- draft (architect's browser only) ---------- */
+const DKEY = 'bangpu52-function-diagram-draft';
+let draftTimer = null;
+function changed(){
+  if (!edit) return;
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(() => { try { localStorage.setItem(DKEY, JSON.stringify({base: EMBED.meta.rev, state: S})); } catch(e){} }, 400);
+}
+function loadDraft(){
+  try {
+    const d = JSON.parse(localStorage.getItem(DKEY) || 'null');
+    if (d && d.base === EMBED.meta.rev && JSON.stringify(d.state) !== JSON.stringify(EMBED)){
+      S = d.state;
+      $('draftNote').innerHTML = 'โหลดร่างที่ยังไม่ได้บันทึกแล้ว <button class="btn" type="button" id="dropDraft">ทิ้งร่าง กลับไปผังในไฟล์</button>';
+      $('dropDraft').onclick = () => { try { localStorage.removeItem(DKEY); } catch(e){} S = JSON.parse(JSON.stringify(EMBED)); sel = null; $('draftNote').textContent = ''; renderEditor(); renderReqs(); render(); };
+    }
+  } catch(e){}
+}
+
+/* ---------- mode ---------- */
+function setEdit(on){
+  edit = on;
+  document.body.classList.toggle('edit', on);
+  $('modeBtn').textContent = on ? 'ดูแบบลูกค้า' : '✎ จัดผัง';
+  linkFrom = null; $('linkBtn').setAttribute('aria-pressed','false');
+  if (on){ loadDraft(); renderEditor(); }
+  renderReqs(); render();
+}
+$('modeBtn').onclick = () => setEdit(!edit);
+
+/* ---------- toast ---------- */
+let toastT;
+function toast(msg){ const t = $('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600); }
+
+/* ---------- save ---------- */
+$('saveBtn').onclick = () => {
+  const out = JSON.parse(JSON.stringify(S));
+  out.meta.updated = new Date().toISOString().slice(0,10);
+  out.meta.rev = (EMBED.meta.rev || 0) + 1;
+  const json = JSON.stringify(out, null, 1).replace(/</g, '\\u003c');
+  const html = SRC.replace(/(<script type="application\/json" id="state">)[\s\S]*?(<\/script>)/, (m,a,b) => a + '\n' + json + '\n' + b);
+  const url = URL.createObjectURL(new Blob([html], {type:'text/html'}));
+  const a = document.createElement('a');
+  a.href = url; a.download = 'Function Diagram Bangpu Cozy.html';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+  toast('บันทึกไฟล์แล้ว ส่งไฟล์ที่ดาวน์โหลดให้ลูกค้าได้เลย');
+};
+
+/* ---------- plan interaction ---------- */
+function svgPt(ev){
+  const p = svg.createSVGPoint(); p.x = ev.clientX; p.y = ev.clientY;
+  const q = p.matrixTransform(svg.getScreenCTM().inverse());
+  return [q.x, -q.y];
+}
+const snap = v => Math.round(v*10)/10;
+let drag = null, raf = 0;
+
+/* ---------- zoom & pan (wheel, pinch, drag the background, or the buttons) ---------- */
+let view = null, planBase = null, pan = null, pinch = null;   // view = current viewBox; null shows the whole plan
+const ZMAX = 8, touches = new Map();
+function applyView(){
+  const v = view || planBase;
+  svg.setAttribute('viewBox', `${v.x} ${v.y} ${v.w} ${v.h}`);
+  svg.classList.toggle('zoomed', !!view);
+  $('zoomLvl').textContent = Math.round(planBase.w / v.w * 100) + '%';
+}
+function setView(v){
+  const b = planBase, k = Math.min(ZMAX, Math.max(1, b.w / v.w)), w = b.w / k, h = b.h / k;
+  view = k > 1.001 ? {x: Math.min(b.x+b.w-w, Math.max(b.x, v.x)), y: Math.min(b.y+b.h-h, Math.max(b.y, v.y)), w, h} : null;
+  applyView();
+}
+function zoomAt(f, cx, cy, from){   // f > 1 zooms in, keeping viewBox point (cx, cy) fixed on screen
+  const v = from || view || planBase;
+  setView({x: cx - (cx-v.x)/f, y: cy - (cy-v.y)/f, w: v.w/f, h: v.h/f});
+}
+function zoomCentre(f){ const v = view || planBase; zoomAt(f, v.x + v.w/2, v.y + v.h/2); }
+const vbAt = (x, y) => { const p = svg.createSVGPoint(); p.x = x; p.y = y; const q = p.matrixTransform(svg.getScreenCTM().inverse()); return [q.x, q.y]; };
+$('zIn').onclick = () => zoomCentre(1.5);
+$('zOut').onclick = () => zoomCentre(1/1.5);
+$('zFit').onclick = () => { view = null; applyView(); };
+svg.addEventListener('wheel', ev => {
+  ev.preventDefault();
+  const [cx, cy] = vbAt(ev.clientX, ev.clientY);
+  zoomAt(Math.exp(-ev.deltaY * (ev.deltaMode ? 0.05 : 0.0018)), cx, cy);
+}, {passive:false});
+function schedule(){ if (!raf) raf = requestAnimationFrame(() => { raf = 0; render(); }); }
+
+svg.addEventListener('pointerdown', ev => {
+  const hEl = ev.target.closest('[data-handle]'), bEl = ev.target.closest('[data-id]'), eEl = ev.target.closest('[data-edge]'), mEl = ev.target.closest('[data-mark]');
+  if (edit && hEl){
+    const b = S.blocks.find(x => x.id === hEl.dataset.handle);
+    drag = {kind:'resize', b}; ev.preventDefault(); return;
+  }
+  if (edit && mEl){
+    const m = S.marks.find(x => x.id === mEl.dataset.mark), p = svgPt(ev);
+    drag = {kind:'mark', m, dx: m.x-p[0], dy: m.y-p[1]}; ev.preventDefault(); return;
+  }
+  if (bEl){
+    const id = bEl.dataset.id;
+    if (edit && linkFrom === 'arm'){ linkFrom = id; sel = {type:'block', id}; toast('แตะอีกห้องเพื่อเชื่อมหรือตัดความสัมพันธ์'); render(); return; }
+    if (edit && linkFrom && linkFrom !== 'arm'){
+      if (linkFrom !== id){
+        const i = S.links.findIndex(l => (l[0]===linkFrom && l[1]===id) || (l[0]===id && l[1]===linkFrom));
+        if (i >= 0){ S.links.splice(i,1); toast('ตัดความสัมพันธ์แล้ว'); } else { S.links.push([linkFrom,id]); toast('เชื่อมความสัมพันธ์แล้ว'); }
+        changed();
+      }
+      linkFrom = 'arm'; sel = {type:'block', id}; render(); return;
+    }
+    sel = {type:'block', id};
+    if (edit){
+      const b = S.blocks.find(x => x.id === id), p = svgPt(ev);
+      drag = {kind:'move', b, dx: b.x-p[0], dy: b.y-p[1]}; ev.preventDefault();
+    }
+    render(); return;
+  }
+  const xEl = ev.target.closest('[data-ex]');
+  if (xEl){ sel = {type:'ex', id: xEl.dataset.ex}; render(); return; }
+  if (eEl){ sel = {type:'edge', i: +eEl.dataset.edge}; render(); return; }
+  sel = null; render();
+});
+svg.addEventListener('pointerdown', ev => {
+  if (ev.pointerType === 'touch') touches.set(ev.pointerId, [ev.clientX, ev.clientY]);
+  if (touches.size === 2){
+    const [a, b] = [...touches.values()];
+    drag = null; pan = null;
+    pinch = {d: Math.hypot(a[0]-b[0], a[1]-b[1]), mid: vbAt((a[0]+b[0])/2, (a[1]+b[1])/2), v: view || planBase};
+    return;
+  }
+  if (!drag && view) pan = {x: ev.clientX, y: ev.clientY, v: view, s: 1/svg.getScreenCTM().a};
+});
+window.addEventListener('pointermove', ev => {
+  if (touches.has(ev.pointerId)) touches.set(ev.pointerId, [ev.clientX, ev.clientY]);
+  if (pinch && touches.size === 2){
+    const [a, b] = [...touches.values()];
+    zoomAt(Math.hypot(a[0]-b[0], a[1]-b[1]) / pinch.d, pinch.mid[0], pinch.mid[1], pinch.v);
+    return;
+  }
+  if (pan){
+    const dx = ev.clientX - pan.x, dy = ev.clientY - pan.y;
+    if (!pan.moved && Math.hypot(dx, dy) < 4) return;
+    pan.moved = true; svg.classList.add('panning');
+    setView({x: pan.v.x - dx*pan.s, y: pan.v.y - dy*pan.s, w: pan.v.w, h: pan.v.h});
+    return;
+  }
+  if (!drag) return;
+  const p = svgPt(ev);
+  if (drag.kind === 'move'){ drag.b.x = snap(p[0]+drag.dx); drag.b.y = snap(p[1]+drag.dy); }
+  else if (drag.kind === 'resize'){ drag.b.w = Math.max(0.5, snap(p[0]-drag.b.x)); drag.b.h = Math.max(0.5, snap(p[1]-drag.b.y)); syncRow(drag.b); }
+  else if (drag.kind === 'mark'){ drag.m.x = snap(p[0]+drag.dx); drag.m.y = snap(p[1]+drag.dy); }
+  drag.moved = true; schedule();
+});
+const endPointer = ev => {
+  touches.delete(ev.pointerId);
+  if (touches.size < 2) pinch = null;
+  pan = null; svg.classList.remove('panning');
+  if (drag && drag.moved) changed();
+  drag = null;
+};
+window.addEventListener('pointerup', endPointer);
+window.addEventListener('pointercancel', endPointer);
+
+window.addEventListener('keydown', ev => {
+  if (!edit || !sel || sel.type !== 'block' || /INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) return;
+  const b = S.blocks.find(x => x.id === sel.id); if (!b) return;
+  const st = ev.shiftKey ? 1 : 0.1, mv = {ArrowLeft:[-st,0], ArrowRight:[st,0], ArrowUp:[0,st], ArrowDown:[0,-st]}[ev.key];
+  if (mv){ b.x = snap(b.x+mv[0]); b.y = snap(b.y+mv[1]); ev.preventDefault(); changed(); render(); }
+  if (ev.key === 'Delete'){ $('delBtn').click(); ev.preventDefault(); }
+});
+
+/* ---------- toolbar ---------- */
+document.querySelectorAll('.seg button').forEach(btn => btn.onclick = () => { floor = +btn.dataset.floor; if (sel && sel.type==='block'){ const b = S.blocks.find(x => x.id===sel.id); if (b && b.f !== floor) sel = null; } render(); });
+$('tgLinks').onchange = render; $('tgGhost').onchange = render; $('tgEx').onchange = render;
+$('linkBtn').onclick = () => {
+  const on = !linkFrom; linkFrom = on ? 'arm' : null;
+  $('linkBtn').setAttribute('aria-pressed', String(on));
+  if (on) toast('แตะห้องแรก แล้วแตะห้องที่สอง');
+};
+$('addBtn').onclick = () => {
+  let n = 1; while (S.blocks.some(b => b.id === 'n'+n)) n++;
+  const b = {id:'n'+n, n:'ห้องใหม่', f:floor, z:'home', r:true, x:4, y:5, w:3, h:3, note:''};
+  S.blocks.push(b); sel = {type:'block', id:b.id}; changed(); renderEditor(); render();
+};
+$('delBtn').onclick = () => {
+  if (!sel || sel.type !== 'block') { toast('เลือกห้องที่จะลบก่อน'); return; }
+  const id = sel.id;
+  S.blocks = S.blocks.filter(b => b.id !== id); S.links = S.links.filter(l => !l.includes(id));
+  sel = null; changed(); renderEditor(); render(); toast('ลบห้องแล้ว');
+};
+
+/* ---------- editor inputs ---------- */
+$('fOpt').oninput = e => { S.meta.option = e.target.value; changed(); render(); };
+$('fRoad').oninput = e => { const v = parseFloat(e.target.value); if (v > 0){ S.site.road = v; changed(); render(); } };
+$('fHgt').oninput = e => { const v = parseFloat(e.target.value); if (v > 0){ S.site.height = v; changed(); render(); } };
+$('fUse').onchange = e => { S.site.use = e.target.value; changed(); render(); };
+$('edgeForm').addEventListener('change', e => { const i = e.target.dataset.edgeSel; if (i != null){ S.site.edges[+i] = e.target.value; sel = {type:'edge', i:+i}; changed(); render(); } });
+$('prog').addEventListener('input', e => {
+  const tr = e.target.closest('tr[data-row]'); if (!tr) return;
+  const b = S.blocks.find(x => x.id === tr.dataset.row); if (!b) return;
+  const k = e.target.dataset.k, v = e.target.value;
+  if (k === 'n' || k === 'note') b[k] = v;
+  else if (k === 'f'){ b.f = +v; }
+  else if (k === 'z') b.z = v;
+  else if (k === 'r') b.r = e.target.checked;
+  else if (k === 'ex') b.ex = e.target.checked;
+  else {
+    const num = parseFloat(v); if (!(num > 0)) return;
+    if (k === 'w') b.w = num; else if (k === 'h') b.h = num; else if (k === 'a') b.h = +(num / b.w).toFixed(2);
+    syncRow(b);
+  }
+  sel = {type:'block', id:b.id};
+  if (k === 'f') floor = b.f;
+  changed(); render();
+});
+$('prog').addEventListener('focusin', e => { const tr = e.target.closest('tr[data-row]'); if (!tr) return; const b = S.blocks.find(x => x.id === tr.dataset.row); if (b){ sel = {type:'block', id:b.id}; if (b.f !== floor) floor = b.f; render(); } });
+
+/* ---------- start ---------- */
+renderLegend();
+setEdit(location.hash === '#edit');
+})();
+</script>
+</body>
+</html>
