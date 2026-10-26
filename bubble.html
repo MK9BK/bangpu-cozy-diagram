@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Bubble diagram ของบ้านและร้าน บางปู 52">
 </head>
 <body>
-<title>Bubble Diagram · Bangpu Cozy</title>
+<title>Bubble Diagram บางปู 52 R5</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mali:wght@600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap">
 <style>
@@ -53,7 +53,7 @@ canvas{display:block;width:100%;touch-action:pan-y;cursor:default}
   <aside class="side">
     <div>
       <p class="eyebrow">BUBBLE DIAGRAM</p>
-      <h1>บ้าน + ร้าน Bangpu Cozy</h1>
+      <h1>บ้าน + ร้าน บางปู 52</h1>
       <p class="lede">พื้นที่แต่ละส่วนอยู่ใกล้กันแค่ไหน และเชื่อมกันอย่างไร ลองเอาเมาส์ไปแตะเจลลี่ดูได้เลย</p>
     </div>
     <div class="floors" role="group" aria-label="เลือกชั้น">
@@ -77,38 +77,39 @@ const G = {
   cook:  {t:'ครัว / เตา',         a:'#FF9A6E', b:'#FF5F7A', ink:'#86202d'},
   pray:  {t:'บูชา',              a:'#FFA3DA', b:'#C985FF', ink:'#6a1f78'},
   home:  {t:'ที่อยู่อาศัย',        a:'#86E6B4', b:'#38C3B0', ink:'#0c5a4b'},
-  water: {t:'ห้องน้ำ / ซักล้าง',   a:'#86DCFF', b:'#5096FF', ink:'#0f3f84'},
-  store: {t:'จอดรถ / โกดัง (อาคารเดิม)', a:'#C6CCE2', b:'#8B97BD', ink:'#2b3553'}
+  water: {t:'ห้องน้ำ / ซักล้าง / สระ',   a:'#86DCFF', b:'#5096FF', ink:'#0f3f84'},
+  store: {t:'จอดรถ / โกดัง / เก็บของ', a:'#C6CCE2', b:'#8B97BD', ink:'#2b3553'}
 };
 const BED = 'ห้องนอนพร้อมห้องน้ำในตัว';
 // x, y in a 100 × 124 stage; front of the plot (the soi) is at the bottom
 const ROOMS = [
-  {id:1,  f:1, n:'หน้าร้าน\nขายของ',   g:'shop',  x:32, y:106, r:9.5, d:'ร้านข้าวสาร ยกพื้นหนีน้ำ ขึ้น 3–4 ขั้น'},
-  {id:2,  f:1, n:'เตา + ถ่าน',         g:'cook',  x:52, y:108, r:6,   d:'โซนเตาแยก อยู่ด้านหน้าร้าน'},
-  {id:3,  f:1, n:'Office',             g:'shop',  x:56, y:91,  r:7.5, d:'ติดประตูขนของ เดินเข้าที่จอดรถได้'},
-  {id:4,  f:1, n:'ตี่จู้\nปึงเถ้า',       g:'pray',  x:28, y:90,  r:5.5, d:'ท้ายร้าน หันออกหน้าร้าน'},
-  {id:5,  f:1, n:'ครัว',               g:'cook',  x:12, y:93,  r:6.5, d:'ครัวร้าน อยู่มุมหลังร้าน'},
-  {id:6,  f:1, n:'ที่จอดรถ\n+ Loading', g:'store', x:82, y:96,  r:12,  d:'ใช้อาคารเดิม รถขึ้นทางลาดจากหน้าที่ดิน'},
-  {id:7,  f:1, n:'โกดังข้าว',           g:'store', x:82, y:50,  r:15,  d:'ใช้อาคารเดิมส่วนหลัง'},
-  {id:8,  f:1, n:'ที่ตากผ้า',           g:'water', x:30, y:73,  r:10,  d:'ลานกลาง หลังคาโปร่งแสง'},
-  {id:9,  f:1, n:'ซักล้าง',            g:'water', x:50, y:72,  r:7,   d:'หลังคาโปร่งแสง อยู่ติดที่ตากผ้า'},
-  {id:10, f:1, n:'โถงบ้าน\nห้องรับแขก', g:'home',  x:44, y:36,  r:12,  d:'มีมุมกินข้าว อยู่ใกล้ Pantry'},
-  {id:11, f:1, n:'ห้องนอน\n+ ห้องน้ำ',  g:'home',  x:30, y:12,  r:8,   d:BED},
-  {id:12, f:1, n:'ห้องนอน\n+ ห้องน้ำ',  g:'home',  x:47, y:11,  r:8,   d:BED},
-  {id:13, f:1, n:'ห้องนอน\n+ ห้องน้ำ',  g:'home',  x:64, y:12,  r:8,   d:BED},
-  {id:14, f:1, n:'Pantry',             g:'cook',  x:34, y:55,  r:6,   d:'ครัวเบาในบ้าน'},
-  {id:15, f:1, n:'ห้องน้ำ',            g:'water', x:55, y:53,  r:4.5, d:'ห้องน้ำรวมชั้นล่าง'},
-  {id:16, f:1, n:'ที่จอดรถ',           g:'store', x:11, y:16,  r:9,   d:'ลานจอดหลังบ้าน 2 คัน'},
-  {id:17, f:2, n:'ห้องพระ',            g:'pray',  x:42, y:62,  r:8,   d:'ด้านหน้าชั้น 2 หันพระออกด้านถนน'},
-  {id:18, f:2, n:'Gym +\nLibrary',     g:'home',  x:46, y:36,  r:13,  d:'ห้องออกกำลังกายและมุมอ่านหนังสือ'},
-  {id:19, f:2, n:'ห้องนอน',            g:'home',  x:32, y:13,  r:9,   d:'ใช้ห้องน้ำร่วมกับห้องนอนอีกห้อง'},
-  {id:21, f:2, n:'ห้องน้ำ',            g:'water', x:49, y:11,  r:5,   d:'เข้าได้จากห้องนอนทั้งสองห้อง'},
-  {id:20, f:2, n:'ห้องนอน',            g:'home',  x:66, y:13,  r:9,   d:'ใช้ห้องน้ำร่วมกับห้องนอนอีกห้อง'},
-  {id:22, f:2, n:'Storage',            g:'store', x:84, y:60,  r:14,  d:'ชั้น 2 ของอาคารเดิม'}
+  {id:1,  f:1, n:'หน้าร้าน\nขายของ',     g:'shop',  x:40, y:106, r:8.5, d:'ร้านข้าวสารอยู่ด้านหน้าใน Business Core'},
+  {id:2,  f:1, n:'Office',               g:'shop',  x:38, y:90,  r:6.5, d:'อยู่ใน Business Core ด้านหลังร้าน'},
+  {id:3,  f:1, n:'ครัว',                 g:'cook',  x:57, y:104, r:6,   d:'ครัวร้านใน Business Core ฝั่งทางเดิน ขนาดรอแบ่งโซน'},
+  {id:4,  f:1, n:'ตี่จู้\nปึงเถ้า',         g:'pray',  x:54, y:91,  r:5,   d:'มุมบูชา (Spiritual) ใน Business Core ตำแหน่งรอสรุป'},
+  {id:5,  f:1, n:'Entrance',             g:'home',  x:60, y:79,  r:5,   d:'ทางเข้าบ้าน เดินมาจากซอยตามทางเดินข้าง Business Core'},
+  {id:6,  f:1, n:'ห้องนอน 1\n+ ห้องน้ำ',  g:'home',  x:42, y:74,  r:8,   d:'ห้องนอนชั้นล่าง เข้าจากฝั่งบ้านผ่าน Entrance'},
+  {id:7,  f:1, n:'Family\nSpace',        g:'home',  x:39, y:47,  r:12,  d:'นั่งเล่น ทานข้าว และบันไดขึ้นชั้น 2'},
+  {id:8,  f:1, n:'Pantry',               g:'cook',  x:33, y:28,  r:5,   d:'ครัวเบาใน Family Space'},
+  {id:9,  f:1, n:'ห้องน้ำแขก',           g:'water', x:48, y:27,  r:4,   d:'Powder room ใน Family Space'},
+  {id:10, f:1, n:'ห้องนอน 2\n+ ห้องน้ำ',  g:'home',  x:60, y:55,  r:8,   d:'ห้องนอนพร้อมห้องน้ำในตัว'},
+  {id:11, f:1, n:'ห้องนอน 3\n+ ห้องน้ำ',  g:'home',  x:60, y:31,  r:8,   d:'ห้องนอนพร้อมห้องน้ำในตัว'},
+  {id:12, f:1, n:'ซักล้าง',              g:'water', x:24, y:21,  r:5.5, d:'ย้ายมาไว้หลังบ้าน'},
+  {id:13, f:1, n:'สระว่ายน้ำ\nผู้สูงอายุ',  g:'water', x:16, y:41,  r:8,   d:'สระสำหรับผู้สูงอายุหลังบ้าน'},
+  {id:14, f:1, n:'ห้องเครื่อง',           g:'water', x:5,  y:51,  r:3.5, d:'ห้องปั๊มและระบบกรองสระ'},
+  {id:15, f:1, n:'ที่จอดรถสำรอง\n/ ตากผ้า', g:'store', x:10, y:13,  r:7.5, d:'จอดรถ 1 คัน ใช้ตากผ้าเมื่อไม่มีรถ'},
+  {id:16, f:1, n:'ที่จอดรถ\n+ Loading',   g:'store', x:86, y:97,  r:10,  d:'อาคารเดิม (งานรีโนเวท) จอดรถลงสต็อกข้าว'},
+  {id:17, f:1, n:'โกดังข้าว',             g:'store', x:87, y:52,  r:12.5,  d:'อาคารเดิม (งานรีโนเวท) รื้อผนังภายใน คงบันได'},
+  {id:21, f:2, n:'ห้องพระ',              g:'pray',  x:46, y:65,  r:8,   d:'ด้านหน้าชั้น 2'},
+  {id:22, f:2, n:'Gym +\nLibrary',       g:'home',  x:38, y:38,  r:12,  d:'2nd Family Space พร้อมบันได'},
+  {id:23, f:2, n:'ห้องนอน 4',            g:'home',  x:60, y:50,  r:8.5, d:'ใช้ห้องน้ำร่วมกับห้องนอน 5'},
+  {id:24, f:2, n:'ห้องน้ำ',              g:'water', x:61, y:35,  r:4.5, d:'เข้าได้จากห้องนอน 4 และ 5'},
+  {id:25, f:2, n:'ห้องนอน 5',            g:'home',  x:60, y:20,  r:8.5, d:'ใช้ห้องน้ำร่วมกับห้องนอน 4'},
+  {id:26, f:2, n:'เก็บของ',              g:'store', x:87, y:55,  r:12,  d:'ชั้น 2 อาคารเดิม (งานรีโนเวท)'}
 ];
-const LINKS = [[1,2],[2,3],[1,4],[4,5],[3,6],[6,7],[8,9],[8,14],[14,10],[10,15],[10,11],[10,12],[10,13],
-               [18,17],[18,19],[18,20],[19,21],[20,21]];
-const EXIST = {1:[6,7], 2:[22]};
+const LINKS = [[1,2],[1,4],[1,3],[3,4],[2,16],[16,17],[5,6],[5,7],[7,8],[7,9],[7,10],[7,11],[7,12],[12,15],[7,13],[13,14],
+               [22,21],[22,23],[22,25],[23,24],[25,24]];
+const EXIST = {1:[16,17], 2:[26]};
 const SW = 100, SH = 124, N = 44;
 
 const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
@@ -340,24 +341,24 @@ function drawGround(){
   ctx.fillStyle = '#f6f6fb'; ctx.fill();
   ctx.setLineDash([6, 6]); ctx.lineWidth = 1.5; ctx.strokeStyle = '#c9cde0'; ctx.stroke();
   ctx.restore();
-  label('อาคารเดิม (คงไว้)', X((x0+x1)/2), Y(y0 + 3), small, '#8b93b2');
+  label('อาคารเดิม (งานรีโนเวท)', X((x0+x1)/2), Y(y0 + 3), small, '#8b93b2');
   // soi along the front
   ctx.fillStyle = '#f3f1f8'; roundRect(X(-2), Y(117.5), (SW+4)*S, 6*S, 3*S); ctx.fill();
   label('ซอย · หน้าที่ดิน', X(62), Y(120.5), small, '#a7a2bb');
   if (floor === 1){
     const ac = '#9b95b3';
-    arrow(X(32), Y(121.5), X(32), Y(116.5), ac); label('ทางเข้าร้าน', X(32) + 6, Y(120.5), small, ac, 'left');
-    arrow(X(80), Y(121.5), X(80), Y(109), ac); label('ทางเข้ารถ', X(80) + 6, Y(120.5), small, ac, 'left');
+    arrow(X(40), Y(121.5), X(40), Y(116.5), ac); label('ทางเข้าร้าน', X(40) + 6, Y(120.5), small, ac, 'left');
+    arrow(X(86), Y(121.5), X(86), Y(110), ac); label('ทางเข้ารถ', X(86) + 6, Y(120.5), small, ac, 'left');
     ctx.save(); ctx.strokeStyle = ac; ctx.lineWidth = 2.2; ctx.setLineDash([5, 6]); ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(X(3), Y(121.5)); ctx.lineTo(X(3), Y(36)); ctx.lineTo(X(29), Y(36)); ctx.stroke(); ctx.restore();
-    arrow(X(26), Y(36), X(31), Y(36), ac);
-    ctx.save(); ctx.translate(X(6.5), Y(66)); ctx.rotate(-Math.PI/2); label('ทางเข้าบ้าน', 0, 0, small, ac); ctx.restore();
+    ctx.beginPath(); ctx.moveTo(X(68), Y(121.5)); ctx.lineTo(X(68), Y(79)); ctx.stroke(); ctx.restore();
+    arrow(X(68), Y(82), X(66), Y(79), ac);
+    ctx.save(); ctx.translate(X(70.5), Y(100)); ctx.rotate(-Math.PI/2); label('ทางเดินเข้าบ้าน', 0, 0, small, ac); ctx.restore();
   } else {
     // ghost of the ground floor's shop and court under the second floor
     ctx.save(); ctx.setLineDash([3, 6]); ctx.lineWidth = 1.4; ctx.strokeStyle = '#dcd8e8';
-    for (const r of ROOMS) if (r.f === 1 && r.y > 64 && r.x < 66){ ctx.beginPath(); ctx.arc(X(r.x), Y(r.y), r.r*S, 0, Math.PI*2); ctx.stroke(); }
+    for (const r of ROOMS) if (r.f === 1 && r.y > 68 && r.x < 70){ ctx.beginPath(); ctx.arc(X(r.x), Y(r.y), r.r*S, 0, Math.PI*2); ctx.stroke(); }
     ctx.restore();
-    label('ใต้นี้คือร้านและลานกลางชั้น 1', X(32), Y(84), small, '#b7b2c9');
+    label('ใต้นี้คือ Business Core และห้องนอน 1 ชั้น 1', X(42), Y(88), small, '#b7b2c9');
   }
 }
 
@@ -386,6 +387,5 @@ awake = true; requestAnimationFrame(frame);
 })();
 </script>
 
-<a class="home-link" href="./" style="position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:50;font:600 13px 'IBM Plex Sans Thai','Sarabun',sans-serif;background:#2d2940;color:#fff;text-decoration:none;padding:8px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.18)">← เลือกหน้า</a>
 </body>
 </html>
