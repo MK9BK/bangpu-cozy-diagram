@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: a small cover with two large page cards; one column on phones. */
+/* Layout: a small cover with three page cards; one column on phones. */
 :root{
   color-scheme:light;
   --bg:#ffffff; --ink:#2d2940; --muted:#7d7891; --soft:#f7f5fb; --line:#ece8f4;
@@ -39,7 +39,7 @@ a.card:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
   <header>
     <p class="eyebrow">BANGPU COZY · บ้าน + ร้าน</p>
     <h1>ผังโครงการ</h1>
-    <p class="lede">เลือกดูได้สองแบบ แบบเจลลี่ดูง่ายว่าแต่ละส่วนอยู่ใกล้กันอย่างไร แบบผังบนที่ดินจริงแสดงขนาดห้อง ระยะร่น และข้อกำหนดตามกฎหมาย</p>
+    <p class="lede">เลือกดูได้สามแบบ แบบเจลลี่ดูง่ายว่าแต่ละส่วนอยู่ใกล้กันอย่างไร แบบผังบนที่ดินจริงแสดงขนาดห้อง ระยะร่น ข้อกำหนดตามกฎหมาย และโมเดล 3D กับเงาแดด ส่วนภาพก้อนอาคารเป็นภาพนิ่งที่ดูการซ้อนชั้นได้ง่าย</p>
   </header>
   <div class="cards">
     <a class="card" href="bubble.html">
@@ -74,10 +74,25 @@ a.card:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
         <path d="M76 160 L72 30" stroke="#ff7a6b" stroke-width="1.5" stroke-dasharray="5 4"/>
         <rect x="0" y="162" width="320" height="18" fill="#26343d"/>
       </svg>
-      <div class="body"><b>ผังบนที่ดินจริง + กฎหมาย</b><span>ห้องวาดตามขนาดจริงบนรูปแปลง พร้อมตรวจระยะร่น ที่ว่าง และความสูงอาคาร ซูมเข้าออกได้</span><span class="go">เปิดดู →</span></div>
+      <div class="body"><b>ผังบนที่ดินจริง + กฎหมาย</b><span>ห้องวาดตามขนาดจริงบนรูปแปลง พร้อมตรวจระยะร่น ที่ว่าง และความสูงอาคาร มีแท็บ 3D หมุนดูก้อนอาคารและเงาแดดตามเวลา</span><span class="go">เปิดดู →</span></div>
+    </a>
+    <a class="card" href="axon.html">
+      <svg class="thumb" viewBox="0 0 320 180" aria-hidden="true">
+        <rect width="320" height="180" fill="#ffffff"/>
+        <g stroke-width="1.5" stroke-linejoin="round">
+          <path d="M90 122 L160 150 L250 112 L180 84 Z" fill="#eef1f3" stroke="#56656f"/>
+          <path d="M130 118 L170 134 L205 119 L165 103 Z" fill="#e7c9a0" stroke="#b86d0c"/>
+          <path d="M110 108 L150 124 L150 112 L110 96 Z" fill="#a9cbcf" stroke="#0e6b74"/>
+          <path d="M112 72 L152 88 L192 72 L152 56 Z" fill="#a9cbcf" stroke="#0e6b74"/>
+          <path d="M152 88 L192 72 L192 80 L152 96 Z" fill="#7aa9ae" stroke="#0e6b74"/>
+          <path d="M112 72 L152 88 L152 96 L112 80 Z" fill="#8fbcc1" stroke="#0e6b74"/>
+        </g>
+        <g stroke="#9aa6ad" stroke-width="1" stroke-dasharray="3 3"><line x1="112" y1="80" x2="112" y2="100"/><line x1="152" y1="96" x2="152" y2="116"/><line x1="192" y1="80" x2="192" y2="98"/></g>
+      </svg>
+      <div class="body"><b>ภาพก้อนอาคาร (Axonometric)</b><span>ภาพแยกชั้นพร้อมชื่อห้อง และก้อนอาคารมุมหน้าและมุมหลังบ้าน แตะภาพเพื่อดูขนาดเต็ม</span><span class="go">เปิดดู →</span></div>
     </a>
   </div>
-  <p class="note">ผังทั้งสองเป็นแผนภาพเพื่อคุยแนวคิดการใช้พื้นที่ ยังไม่ใช่แบบก่อสร้าง</p>
+  <p class="note">ผังและภาพทั้งหมดเป็นแผนภาพเพื่อคุยแนวคิดการใช้พื้นที่ ยังไม่ใช่แบบก่อสร้าง</p>
 </main>
 </body>
 </html>
